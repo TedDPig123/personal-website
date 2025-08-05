@@ -115,3 +115,11 @@ body{
 .see-more:hover:after{
   width: 100%;
 }
+
+.gallery::-webkit-scrollbar{
+    display:none;
+}
+
+.gallery div{
+  flex:none;
+}

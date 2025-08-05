@@ -123,7 +123,6 @@ waitForElements([ ".name-overlay", ".orjust", ".overlay-name", ".navbar"], () =>
         trigger: ".projects",
         start: "top 45%",
         onEnter: loadFirstProjects,
-        markers: true,
         once: true
       }
     })

@@ -1,4 +1,5 @@
 import Projects from "./Projects"
+import Experiences from "./Experiences"
 
 export default function Landing(){
     return(
@@ -38,7 +39,7 @@ export default function Landing(){
             </section>
 
 
-            <section className="h-[53vh]">
+            <section className="h-[53vh] rest-of-stuff-container">
                 <div className="sticky top-4 z-10">
                     <div className="h-[100vh] m-4">
                     </div>
@@ -49,6 +50,11 @@ export default function Landing(){
                 <div className="h-fit">
                     <div className="sticky top-4 z-20">
                         <Projects />
+                    </div>
+                </div>
+                <div className="h-fit">
+                    <div className="sticky top-4 z-20">
+                        <Experiences />
                     </div>
                 </div>
             </section>
