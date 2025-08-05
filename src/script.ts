@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import Navbar from "./components/Navbar";
+import { projectsList } from "./content/ProjectsList";
 
 //timer function
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -37,7 +37,7 @@ function waitForElements(selectors, callback) {
   }, 50);
 }
 
-async function loadProjects() {
+async function loadFirstProjects() {
   const projectItems = document.querySelectorAll(".project-card");
 
   for (let i=0;i<3;i++) {
@@ -53,6 +53,30 @@ async function loadProjects() {
   }
 }
 
+async function loadAllProjects() {
+  const projectItems = document.querySelectorAll(".project-card");
+
+  for (let i=3;i<projectItems.length;i++) {
+    gsap.fromTo(projectItems[i], {
+      opacity: 0,
+      y:50,
+      height:function(i, target) {
+        target.style.height = "auto"; 
+        const height = target.offsetHeight; //record the natural height
+        target.style.height = "0px"; //now reset it to 0
+        return height; //return the natural height
+      }
+    },{
+      opacity: 1,
+      y:0,
+      duration: 0.3,
+      ease: "power1.out"
+    });
+    await timer(200);
+  }
+}
+
+
 waitForElements([ ".name-overlay", ".orjust", ".overlay-name", ".navbar"], () => {
   const orJust = document.querySelector(".orjust");
   const orJustLine = document.querySelector(".orjust-line");
@@ -60,6 +84,12 @@ waitForElements([ ".name-overlay", ".orjust", ".overlay-name", ".navbar"], () =>
   const geriWhite = document.querySelector(".geri-white");
   const forShort = document.querySelector(".for-short");
   const navbar = document.querySelector(".navbar");
+  const projectItems = document.querySelectorAll(".project-card");
+
+  //making only the first 3 visible
+  for (let i=0;i<3;i++) {
+    projectItems[i].classList.remove("hidden")
+  }
   
   const scrollTl = gsap.timeline({
   scrollTrigger: {
@@ -92,14 +122,57 @@ waitForElements([ ".name-overlay", ".orjust", ".overlay-name", ".navbar"], () =>
       scrollTrigger: {
         trigger: ".projects",
         start: "top 45%",
-        onEnter: loadProjects,
+        onEnter: loadFirstProjects,
         markers: true,
         once: true
       }
     })
 });
 
-//see more loading
-document.querySelector(".see-more")?.addEventListener("click",()=>{
-  
-})
+//see more / see less functionality
+let seeMore = true;
+
+waitForElements([".see-more"], () => {
+  const seeMoreBtn = document.querySelector(".see-more");
+
+  seeMoreBtn?.addEventListener("click", async () => {
+    if (seeMore){
+      const projectItems = document.querySelectorAll(".project-card");
+      for (let i = 0; i < projectItems.length; i++) {
+        projectItems[i].classList.remove("hidden");
+      }
+
+      await loadAllProjects();
+      lenis.resize();
+
+      seeMoreBtn.textContent = "see less";
+      seeMore = false;
+    }else{
+      const projectItems = document.querySelectorAll(".project-card");
+      const extraProjects = Array.from(projectItems).slice(3)
+      
+        for (let i = extraProjects.length-1; i >= 0; i--) {
+          await gsap.to(extraProjects[i], {
+          opacity: 0,
+          y: 20,
+          duration: 0.1,
+          ease: "power1.out"
+        });
+      }
+      await gsap.to(extraProjects, {
+          opacity: 0,
+          height: 0,
+          duration: 0.5,
+          onComplete: () => {
+            extraProjects.forEach(e => e.classList.add("hidden"));
+          }
+      });
+
+      // projectItems[i].classList.add("hidden");
+
+      lenis.resize();
+      seeMoreBtn.textContent = "see more";
+      seeMore = true;
+    } 
+  });
+});
