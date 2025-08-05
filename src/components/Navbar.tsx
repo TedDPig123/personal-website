@@ -1,0 +1,99 @@
+import mainLogo from '../assets/Geri_Logo.png'
+import linkedInLogo from '../assets/linkedin.png'
+import instagram from '../assets/instagram.png'
+import github from '../assets/github.png'
+import question from '../assets/question.png'
+import spotify from '../assets/spotify.png'
+import youtube from '../assets/youtube.png'
+
+import React, { useRef } from 'react'
+import Typed from 'typed.js'
+import { currentlyList } from '../content/CurrentlyList';
+
+export default function Navbar(){
+    const typedStuff = useRef(null);
+    React.useEffect(() => {
+        const typed = new Typed(typedStuff.current, {
+            strings: [...currentlyList],
+            typeSpeed: 50,
+            backSpeed: 50,
+            loop: true
+        });
+
+        return () => {
+            typed.destroy();
+        };
+    }, []);
+
+    return(
+        <section className="navbar fixed top-0 z-50 w-full flex-col">
+            <div className="text-black border-b-1 flex font-telegraf h-[102px] bg-white">
+                <div className='p-4 border-r-1 inline-block flex-shrink-0'>
+                    <img src={mainLogo} alt="Logo ('Geri by Design')" className='h-[70px] w-auto'/>
+                </div>
+                <div className='w-[330px] border-r-1 flex pl-7 pr-5 align-center items-center text-[12px] truncate'>
+                    <div>
+                        <div className='underline'>I am currently . . .</div>
+                        <span className='flex-col' ref={typedStuff} />
+                    </div>
+                </div>
+                {/* nav options */}
+                <ul className='menu-options flex items-center p-7 justify-around text-[16px] border-r-1 flex-grow'>
+                    <li id='about' className='cursor-pointer'>about me</li>
+                    <li id='experiences' className='cursor-pointer'>experiences</li>
+                    <li id='resume' className='cursor-pointer'>resume</li>
+                    <li id='contact' className='cursor-pointer'>contact</li>
+                </ul>
+                {/* links */}
+                <div className='flex text-[12px] flex-shrink-0 ml-auto'>
+                    <div className='top flex border-r-1'>
+                        <div>
+                            <div className='h-[50%] w-[100%] p-2 border-b-1 logo'>
+                                <img src={linkedInLogo} alt="linkedin" className='logo-image h-full w-full' />
+                            </div>
+                            <div className='h-[50%] w-[100%] p-2 logo z-0'>
+                                <img src={github} alt="github" className='logo-image h-full w-full' />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='top flex border-r-1'>
+                        <div>
+                            <div className='p-3 flex items-center justify-center h-[50%] border-b-1'>← Professional stuff</div>
+                            <div className='p-3 flex items-center justify-center h-[50%]'>Less-professional stuff →</div>
+                        </div>
+                    </div>
+
+                    <div className='top flex border-r-1'>
+                        <div>
+                            <div className='h-[50%] w-[100%] p-2 border-b-1 logo'>
+                                <img src={instagram} alt="instagram" className='logo-image h-full w-full' />
+                            </div>
+                            <div className='h-[50%] w-[100%] p-2 logo z-0'>
+                                <img src={youtube} alt="youtube" className='logo-image h-full w-full' />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='top flex border-r-1'>
+                        <div>
+                            <div className='h-[50%] w-[100%] p-3 border-b-1 logo z-0'>
+                                <img src={question} alt="random" className='logo-image h-full w-full' />
+                            </div>
+                            <div className='h-[50%] w-[100%] p-2 logo z-0'>
+                                <img src={spotify} alt="spotify" className='logo-image h-full w-full' />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='font-editoriallight text-[35px] flex items-center justify-center p-2 fit-content'>
+                        Hire me!!!
+                    </div>
+                </div>
+            </div>
+
+            <div className='nav-buffer w-full h-4 bg-white'></div>
+        </section>
+        
+    )
+}

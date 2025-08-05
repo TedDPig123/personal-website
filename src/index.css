@@ -1,0 +1,117 @@
+@font-face {
+  font-family: Telegraf;
+  src: url("./fonts/TelegrafRegular.otf");
+}
+
+@font-face {
+  font-family: EditorialNewUltralight;
+  src: url("./fonts/PPEditorialNew-Ultralight.otf");
+}
+
+@font-face {
+  font-family: HelveticaRegular;
+  src: url("./fonts/Helvetica.ttf");
+}
+
+
+@import "tailwindcss";
+
+@theme{
+  --font-telegraf: telegraf, "sans-serif"
+}
+
+@theme{
+  --font-editoriallight: editorialnewultralight, "serif"
+}
+
+@theme{
+  --font-helveticaregular: helveticaregular, "serif"
+}
+
+body{
+  background: white;
+}
+
+.menu-options li{
+  position: relative;
+  
+}
+
+.logo{
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.logo::after{
+  content: '';
+  position: absolute;
+  bottom:0;
+  left:0;
+  height: 100%;
+  width: 0%;
+  background: black;
+  transition: width .4s cubic-bezier(1,-0.1,.08,1.2);
+  z-index: 1;
+}
+
+.logo-image{
+  position: relative;
+  z-index: 2;
+  transition: .01s;
+  aspect-ratio: 1 / 1;
+}
+
+.logo:hover .logo-image {
+  filter: brightness(0) invert(1);
+}
+
+.logo:hover:after{
+  width: 100%;
+}
+
+.menu-options li:hover{
+  font-weight: 800;
+  transition: ease-out;
+  
+}
+
+.menu-options li::after{
+  content: '';
+  position: absolute;
+  height: 2px;
+  left:0;
+  bottom:0;
+  width: 0%;
+  background: black;
+  transition: width .4s cubic-bezier(.57,.13,.21,.94);
+}
+
+.menu-options li:hover:after{
+  width: 100%;
+}
+
+/* .name-overlay{
+  backdrop-filter: ;
+} */
+
+.see-more:hover{
+  font-weight: 800;
+  transition: ease-out;
+  
+}
+
+.see-more:after{
+  content: '';
+  position: absolute;
+  height: 2px;
+  left:0;
+  bottom:0;
+  width: 0%;
+  background: rgb(255, 255, 255);
+  transition: width .4s cubic-bezier(.57,.13,.21,.94);
+}
+
+.see-more:hover:after{
+  width: 100%;
+}
