@@ -57,6 +57,11 @@ export default function Landing(){
                         <Experiences />
                     </div>
                 </div>
+                <div className="h-fit">
+                    <div className="sticky top-4 z-20">
+                        <Experiences />
+                    </div>
+                </div>
             </section>
 
             
