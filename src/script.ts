@@ -76,6 +76,7 @@ waitForElements([".name-overlay", ".orjust", ".overlay-name", ".navbar"], () => 
   const orJust = document.querySelector(".orjust");
   const orJustLine = document.querySelector(".orjust-line");
   const overlayName = document.querySelector(".overlay-name");
+  const overlayName2 = document.querySelector(".overlay-name-phone");
   const geriWhite = document.querySelector(".geri-white");
   const forShort = document.querySelector(".for-short");
   const navbar = document.querySelector(".navbar");
@@ -102,6 +103,7 @@ waitForElements([".name-overlay", ".orjust", ".overlay-name", ".navbar"], () => 
       scrub: true,
     }
   }).to(overlayName, { letterSpacing: "18.6vw", ease: "power1.in" }, 0.4)
+    .to(overlayName2, { letterSpacing: "15vw", ease: "power1.in" }, 0.3)
 
   scrollTl
     .to(forShort, { opacity: 1 }, 0.6)

@@ -1,4 +1,4 @@
-import mainLogo from '../assets/Geri_Logo.png'
+import mainLogo from '../assets/geribydesign.png'
 import linkedInLogo from '../assets/linkedin.png'
 import instagram from '../assets/instagram.png'
 import github from '../assets/github.png'
@@ -27,13 +27,13 @@ export default function Navbar(){
 
     return(
         <section className="navbar fixed top-0 z-50 w-full flex-col">
-            <div className="text-black border-b-1 flex font-telegraf h-[102px] bg-white">
-                <div className='p-4 border-r-1 inline-block flex-shrink-0'>
-                    <img src={mainLogo} alt="Logo ('Geri by Design')" className='h-[70px] w-auto'/>
+            <div className="navbar-inner text-black border-b-1 flex font-telegraf h-[102px] bg-white">
+                <div className='border-r-1 inline-block flex-shrink-0 justify-center'>
+                    <img src={mainLogo} alt="Logo ('Geri by Design')" className='nav-logo h-[70px] w-auto m-4'/>
                 </div>
-                <div className='currently-doing border-r-1 flex pl-7 pr-5 align-center items-center text-[12px] truncate shrink-10 overflow-clip w-[18%]'>
+                <div className='currently-doing border-r-1 flex pl-7 pr-5 align-center items-center text-[12px] shrink-10 whitespace-normal w-[18%]'>
                     <div className='w-[280px]'>
-                        <div className='underline'>I am currently . . .</div>
+                        <div className='underline leading-[14px]'>I am currently . . .</div>
                         <span className='flex-col' ref={typedStuff} />
                     </div>
                 </div>
@@ -88,6 +88,28 @@ export default function Navbar(){
                         <div className='hire-me-1 z-20 absolute text-center w-full'></div>
                         <div className='z-10 absolute text-center w-full'>Hire me!!!</div>
                         {/* <div className='hire-me-2 z-15 absolute w-full text-center font-helveticabold text-[30px] leading-[28px]'>You want to hire me...</div> */}
+                    </div>
+                </div>
+                <div className='logo-links-phone flex text-[12px] hidden'>
+                    <div className='top flex-col'>
+                        <div>
+                            <div className='border-b-1 logo p-1'>
+                                <img src={linkedInLogo} alt="linkedin" className='logo-image ' />
+                            </div>
+                            <div className='logo z-0 p-1'>
+                                <img src={github} alt="githubs" className='logo-image' />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='top flex-col'>
+                        <div>
+                            <div className='border-b-1 border-l-1 logo p-1'>
+                                <img src={instagram} alt="instagram" className='logo-image ' />
+                            </div>
+                            <div className='logo z-0 p-1 border-l-1'>
+                                <img src={spotify} alt="spotify" className='logo-image' />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

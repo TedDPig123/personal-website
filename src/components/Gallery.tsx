@@ -84,7 +84,7 @@ export default function Gallery() {
             {showLeftArrow && (
                 <button
                     onClick={scrollLeft}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-opacity-0 hover:bg-opacity-100 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg cursor-pointer">
+                    className="scroll-arrow absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-opacity-0 hover:bg-opacity-100 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg cursor-pointer">
                     <svg className="ease-in-out hover:w-9 hover:h-9 transition-all scroll-btn w-7 h-7 text-white cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M15 19l-7-7 7-7" />
                     </svg>
@@ -94,7 +94,7 @@ export default function Gallery() {
             {showRightArrow && (
                 <button
                     onClick={scrollRight}
-                    className="bg-gradient-to-l from-black to-transparent absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center shadow-lg"
+                    className="scroll-arrow bg-gradient-to-l from-black to-transparent absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center shadow-lg"
                 >
                     <svg className="ease-in-out hover:w-9 hover:h-9 transition-all w-7 h-7 text-white cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M9 5l7 7-7 7" />
@@ -108,9 +108,15 @@ export default function Gallery() {
                 </div>
             </div>
 
-            <div className="left-0 w-20 absolute z-20 top-[10%] h-100 bg-gradient-to-r from-black from-50% to-transparent pointer-events-none"></div>
-            <div className="right-0 w-20 absolute z-20 top-[10%] h-100 bg-gradient-to-l from-black from-50% to-transparent pointer-events-none"></div>            
-            <div className="left-20 right-20 absolute top-[50%] z-10 h-[3px] bg-white"></div>
+            <div className="swipe-phone hidden absolute bottom-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                <div className="bg-black bg-opacity-75 text-[#c8c8c8] rounded-lg text-sm font-telegraf">
+                    &lt; swipe horizontally &gt;
+                </div>
+            </div>
+
+            <div className="left-block-gall left-0 w-20 absolute z-20 top-[10%] h-100 bg-gradient-to-r from-black from-50% to-transparent pointer-events-none"></div>
+            <div className="right-block-gall right-0 w-20 absolute z-20 top-[10%] h-100 bg-gradient-to-l from-black from-50% to-transparent pointer-events-none"></div>            
+            <div className="gallery-bar left-20 right-20 absolute top-[50%] z-10 h-[3px] bg-white"></div>
         </div>
     )
 }

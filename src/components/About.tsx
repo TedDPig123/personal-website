@@ -17,7 +17,7 @@ export default function About(){
             </div>
             <div className="about-section bg-[#D9D9D9] px-[8vw] z-5  ml-4 mr-4 flex items-center">
 
-                <img className="m-5 min-w-[400px] w-[30%]" src={headshot} alt="headshot of me" />
+                <img className="about-portrait m-5 min-w-[400px] w-[30%]" src={headshot} alt="headshot of me" />
 
                 <div className="about-text flex-col mr-20 mt-20 mb-20 ml-5">
                     <div className="font-helveticabold text-[4.5vw] tracking-[-0.03em] leading-[4vw]">

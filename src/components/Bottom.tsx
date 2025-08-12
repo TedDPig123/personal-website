@@ -32,7 +32,7 @@ export default function Bottom(){
 
                 <div className="flex-col mr-5 grow-2">
                     <div className="flex w-full"><span className="font-editorialregular text-[40px] select-none">menu</span><span className="bg-black w-full h-[1px] ml-4 mt-7.5 mr-[30%]"></span></div>
-                    <div className="w-full border-1 border-solid border-black flex font-helveticaregular text-[18px] justify-between">
+                    <div className="w-full border-1 border-solid border-black flex font-helveticaregular text-[18px] justify-between bottom-a">
                         <div className="b-link m-1 mb-12 mt-3 cursor-pointer">
                             contact
                         </div>
@@ -50,7 +50,7 @@ export default function Bottom(){
                 
                 <div className="flex-col mr-5 grow-2">
                     <div className="flex w-full"><span className="font-editorialregular text-[40px] select-none">socials</span><span className="bg-black w-full h-[1px] ml-4 mt-7.5 mr-[40%]"></span></div>
-                    <div className="w-full border-1 border-solid border-black flex font-helveticaregular text-[18px] justify-between b-link-soc">
+                    <div className="w-full border-1 border-solid border-black flex font-helveticaregular text-[18px] justify-between b-link-soc bottom-a">
                         <div className="b-link m-1 mb-9 mt-4 cursor-pointer">
                             linkedin
                         </div>
@@ -71,7 +71,7 @@ export default function Bottom(){
 
                 <div className="spotify flex-col grow-2">
                     <div className="flex w-full"><span className="font-editorialregular text-[40px] select-none">music!</span><span className="bg-black w-full h-[1px] ml-4 mt-7.5 mr-[40%]"></span></div>
-                    <div className="w-full border-1 border-solid border-black flex font-helveticaregular text-[18px] justify-end b-link-s">
+                    <div className="w-full border-1 border-solid border-black flex font-helveticaregular text-[18px] justify-end b-link-s bottom-a">
                         <div className="b-link m-1 mb-13 mr-5 mt-2 cursor-pointer">
                             spotify
                         </div>
@@ -80,11 +80,11 @@ export default function Bottom(){
                 
             </div>
             <div className="the-deep flex justify-between pl-4 pr-4 mt-8 items-end">
-                <div className="font-telegraf whitespace-pre text-[#4C4C4C] text-[18px] leading-[19px]">
+                <div className="bottom-text font-telegraf whitespace-pre text-[#4C4C4C] text-[18px] leading-[19px]">
                     <div>Designed using Adobe PhotoShop and Figma.</div>
                     <div>Created using React, Vite, GSAP, and Tailwind CSS.</div>
                     <div>Deployed with Vercel. Last updated August 2025.</div>
-                    <div className="font-helveticabold text-[24px] mt-3">© Gerindra Adi, all rights reserved.</div>
+                    <div className="bottom-rights font-helveticabold text-[24px] mt-3">© Gerindra Adi, all rights reserved.</div>
                 </div>
                 <div className="to-the-top font-helveticabold text-[40px] leading-[25px] underline flex items-center cursor-pointer">
                     Back to the top<span><img className="top-arrow h-auto w-[40px] ml-2" src={upArrow} alt="upArrow" /></span>
