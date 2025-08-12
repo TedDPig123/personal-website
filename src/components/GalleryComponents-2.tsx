@@ -19,7 +19,7 @@ export default function GalleryComponents2(){
                 </div>
             </div>
 
-            <div className='gallery-phone-2 w-[340px] flex-col mx-1 h-[70vh] hidden'>
+            <div className='gallery-phone-2 w-[340px] flex-col mx-1 h-[70vw] hidden'>
                 <div className='flex justify-center mt-51.5'>
                     <div className='font-telegrafbold text-[16px]'>Fall 2024</div>
                 </div>

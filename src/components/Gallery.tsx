@@ -102,13 +102,13 @@ export default function Gallery() {
                 </button>
             )}
 
-            <div className="absolute bottom-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 select-none ease-in-out">
+            <div className="swipe-desktop absolute bottom-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 select-none ease-in-out">
                 <div className="bg-black bg-opacity-75 text-white rounded-lg text-sm font-telegraf">
                     &lt; Scroll horizontally &gt;
                 </div>
             </div>
 
-            <div className="swipe-phone hidden absolute bottom-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+            <div className="swipe-phone hidden absolute bottom-[20px] left-1/2 -translate-x-1/2 -translate-y-[-30%] z-10">
                 <div className="bg-black bg-opacity-75 text-[#c8c8c8] rounded-lg text-sm font-telegraf">
                     &lt; swipe horizontally &gt;
                 </div>

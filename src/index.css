@@ -350,7 +350,7 @@ body{
 }
 
 /* phone media-queries */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   body {
     position: relative
   }
@@ -450,7 +450,10 @@ body{
     width: 26px;
     height: 26px;
   }
-  .menu-options{
-    padding:0px;
+  .menu-options, .swipe-desktop{
+    display: none;
+  }
+  .menu-options-phone{
+    display:flex;
   }
 }
