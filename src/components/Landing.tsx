@@ -35,7 +35,7 @@ export default function Landing(){
                         </pre>
                     </div>
                     <div className="for-short opacity-0 font-editoriallight text-[4.5vw] leading-[4vw] pt-[3vw] mr-[5%] flex justify-end items-center select-none text-white">
-                        for short
+                        for short.
                     </div>
                 </div>
             </section>
@@ -45,7 +45,8 @@ export default function Landing(){
                 <div className="sticky top-4 z-10">
                     <div className="h-[120vh] m-4">
                     </div>
-                    <div className="name-overlay h-[100vh] bg-black m-4 mb-0">
+                    {/* important */}
+                    <div className="name-overlay h-[65vw] bg-black m-4 mb-0">
                     </div>
                 </div>
 

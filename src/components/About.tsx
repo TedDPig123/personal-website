@@ -15,14 +15,16 @@ export default function About(){
                      <span className="w-[100%] h-[1px] bg-black ml-4 mb-2"></span>
                 </div>
             </div>
-            <div className=" bg-[#D9D9D9] z-5  ml-4 mr-4 flex items-center">
-                <img className="m-5 w-[20%]" src={headshot} alt="headshot of me" />
-                <div className="flex-col mr-20 mt-20 mb-20 ml-10">
-                    <div className="font-helveticabold text-[60px] tracking-[-0.03em] leading-[60px]">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
+            <div className="about-section bg-[#D9D9D9] px-[8vw] z-5  ml-4 mr-4 flex items-center">
+
+                <img className="m-5 min-w-[400px] w-[30%]" src={headshot} alt="headshot of me" />
+
+                <div className="about-text flex-col mr-20 mt-20 mb-20 ml-5">
+                    <div className="font-helveticabold text-[4.5vw] tracking-[-0.03em] leading-[4vw]">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </div>
-                    <div className="mt-7">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
+                    <div className="mt-7 text-[16px]">
+                   Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
                     </div>

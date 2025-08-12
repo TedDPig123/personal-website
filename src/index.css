@@ -79,6 +79,10 @@ body{
   cursor: pointer;
 }
 
+.logo .logo-image{
+  transition: all .23s;
+}
+
 .logo::after{
   content: '';
   position: absolute;
@@ -87,7 +91,7 @@ body{
   height: 100%;
   width: 0%;
   background: black;
-  transition: width .4s cubic-bezier(1,-0.1,.08,1.2);
+  transition: width .3s cubic-bezier(1,0,0,1);
   z-index: 1;
 }
 
@@ -200,4 +204,145 @@ body{
 .scroll-btn:hover{
   width:10;
   height:10;
+}
+
+.hire-me{
+  position: relative;
+  
+}
+
+/* .hire-me::before{
+  content:"";
+  width:100%;
+  height:100%;
+  background: url("./assets/hypnosis.gif");
+  background-position: center;
+  background-position-x: 47%;
+  position: absolute;
+  transition: all 0.4s;
+} */
+
+.hire-me{
+  transition: all 0.5s;
+}
+
+.hire-me:hover{
+  width:350px;
+}
+
+.hire-me-1:hover{
+  opacity: 1;
+}
+.hire-me-1{
+  height:100%;
+  width: 100%;
+  display: flex;
+  background: url("./assets/hypnosis.gif");
+  background-position: center;
+  background-position-x: 47%;
+  opacity: 0;
+  transition:all 0.5s;
+  position: relative;
+}
+.hire-me-1::after{
+  content: "you want to hire me...";
+  justify-content: center;
+  align-items: center;
+  mix-blend-mode:difference;
+  height:100%;
+  width: 100%;
+  display: flex;
+  font-family: HelveticaNeueBold;
+  text-align: center;
+  font-size: 50px;
+  line-height: 40px;
+  color: white;
+  background: transparent;
+  position: absolute;
+}
+
+@media screen and (max-width: 900px) {
+  .projects-container{
+    grid-template-columns: 1fr 1fr;
+  }
+  .about-section{
+    flex-direction: column;
+  }
+  .about-text{
+    margin: 40px;
+    margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .projects-container{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .hire-me{
+    display: none;
+  }
+  .logo-links{
+    width: fit-content;
+  }
+  .prof-lessprof{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .about-section{
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .currently-doing{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .prof-lessprof{
+    display: none;
+  }
+  .bottom-links{
+    flex-direction: column;
+  }
+  .spotify{
+    margin-right: calc(0.25rem * 5)
+  }
+  .the-deep{
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+  .to-the-top{
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+  .top-arrow{
+    width: 30px;
+  }
+  .b-link{
+    margin:10px;
+  }
+  .b-link-s{
+    justify-content: center;
+  }
+  .b-link-soc{
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  #about, #projects{
+    display: none;
+  }
+  .menu-options{
+    min-width: 0px;
+  }
 }
