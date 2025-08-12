@@ -391,9 +391,10 @@ body{
 
   .navbar-inner{
     height:fit-content;
+    border-top:1px solid black;
   }
   .nav-logo{
-    height:50px;
+    height:60px;
     margin:4px;
   }
   .logo-links{
