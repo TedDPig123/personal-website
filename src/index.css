@@ -18,11 +18,38 @@
   src: url("./fonts/Helvetica.ttf");
 }
 
+@font-face {
+  font-family: EditorialNewUltralightItalic;
+  src: url("./fonts/PPEditorialNew-UltralightItalic.ttf");
+}
+
+@font-face {
+  font-family: HelveticaNeueBold;
+  src: url("./fonts/HelveticaNeueBold.otf");
+}
+
+@font-face {
+  font-family: EditorialRegular;
+  src: url("./fonts/PPEditorialNew-Regular.otf");
+}
+
 
 @import "tailwindcss";
 
 @theme{
   --font-telegraf: telegraf, "sans-serif"
+}
+
+@theme{
+  --font-editorialregular: EditorialRegular, "sans-serif"
+}
+
+@theme{
+  --font-editorialitalic: EditorialNewUltralightItalic, "sans-serif"
+}
+
+@theme{
+  --font-helveticabold: HelveticaNeueBold, "sans-serif"
 }
 
 @theme{
@@ -141,4 +168,36 @@ body{
 
 .gallery-text:hover{
   width: 400px
+}
+
+.scroller__inner{
+  white-space: nowrap; 
+  animation: scroll 70s linear infinite;
+  width: max-content;
+}
+
+.scroller__inner p {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0; 
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Move exactly half the width */
+  }
+}
+
+.scroll-btn{
+  transition: all 0.2s;
+}
+
+.scroll-btn:hover{
+  width:10;
+  height:10;
 }

@@ -1,5 +1,7 @@
 import Projects from "./Projects"
 import Experiences from "./Experiences"
+import About from "./About"
+import Bottom from "./Bottom"
 
 export default function Landing(){
     return(
@@ -41,9 +43,9 @@ export default function Landing(){
 
             <section className="h-[53vh] rest-of-stuff-container">
                 <div className="sticky top-4 z-10">
-                    <div className="h-[100vh] m-4">
+                    <div className="h-[120vh] m-4">
                     </div>
-                    <div className="name-overlay h-[60vw] bg-black m-4 mb-0">
+                    <div className="name-overlay h-[100vh] bg-black m-4 mb-0">
                     </div>
                 </div>
 
@@ -59,12 +61,15 @@ export default function Landing(){
                 </div>
                 <div className="h-fit">
                     <div className="sticky top-4 z-20">
-                        <Experiences />
+                        <About />
+                    </div>
+                </div>
+                <div className="h-fit">
+                    <div className="sticky top-4 z-20">
+                        <Bottom />
                     </div>
                 </div>
             </section>
-
-            
         </div>
     )
 }

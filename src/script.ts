@@ -1,7 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { projectsList } from "./content/ProjectsList";
 
 //timer function
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -105,7 +104,7 @@ waitForElements([ ".name-overlay", ".orjust", ".overlay-name", ".navbar"], () =>
     .to(geriWhite, { opacity: 1}, 0.2)
     .to(orJust, { opacity: 1}, 0.5)
     .to(orJustLine, { width: "5vw", ease: "power1.inOut" }, 0.5)
-    .to(overlayName, { letterSpacing: "18.6vw", ease: "power3.inOut" }, 0.4)
+    .to(overlayName, { letterSpacing: "18.6vw", ease: "power1.in" }, 0.4)
 
     gsap.timeline({
     scrollTrigger: {
@@ -175,3 +174,20 @@ waitForElements([".see-more"], () => {
     } 
   });
 });
+
+//infinite scroll animation
+const scrollers = document.querySelectorAll(".scroller");
+
+addAnimation();
+
+function addAnimation(){
+  scrollers.forEach((scroller)=>{
+    const scrollerInner = scroller.querySelector(".scroller__inner");
+    const scrollerContent = Array.from(scrollerInner.children);
+
+    scrollerContent.forEach(item => {
+      const duplicatedItem = item.cloneNode(true);
+      scrollerInner?.appendChild(duplicatedItem);
+    })
+  })
+}
