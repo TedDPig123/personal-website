@@ -9,6 +9,7 @@ import youtube from '../assets/youtube.png'
 import React, { useRef } from 'react'
 import Typed from 'typed.js'
 import { currentlyList } from '../content/CurrentlyList';
+import {Link} from 'react-scroll';
 
 export default function Navbar(){
     const typedStuff = useRef(null);
@@ -38,19 +39,19 @@ export default function Navbar(){
                     </div>
                 </div>
                 <ul className='menu-options flex items-center p-7 justify-around text-[16px] border-r-1 min-w-[410px] grow-10'>
-                    <li id='about' className='cursor-pointer'>about me</li>
-                    <li id='projects' className='cursor-pointer'>projects</li>
+                    <Link to='about' smooth={true} duration={500}><li className='cursor-pointer'>about me</li></Link>
+                    <Link to='projects' smooth={true} duration={500}><li className='cursor-pointer'>projects</li></Link>
                     <li id='resume' className='cursor-pointer'>resume</li>
-                    <li id='contact' className='cursor-pointer'>contact</li>
+                    <a href="mailto:gerindraadi@gmail.com"><li id='contact' className='cursor-pointer'>contact</li></a>
                 </ul>
                 <div className='logo-links flex text-[12px] ml-auto'>
                     <div className='top flex border-r-1'>
                         <div>
                             <div className='h-[50%] w-[50.5px] p-2 border-b-1 logo'>
-                                <img src={linkedInLogo} alt="linkedin" className='logo-image h-full w-full' />
+                                <a href="https://www.linkedin.com/in/gerindra-adi/" target="_blank"><img src={linkedInLogo} alt="linkedin" className='logo-image h-full w-full' /></a>
                             </div>
                             <div className='h-[50%] w-[50.5px] p-2 logo z-0'>
-                                <img src={github} alt="github" className='logo-image h-full w-full' />
+                                <a href="https://github.com/TedDPig123" target="_blank"><img src={github} alt="github" className='logo-image h-full w-full' /></a>
                             </div>
                         </div>
                     </div>
@@ -65,10 +66,10 @@ export default function Navbar(){
                     <div className='top flex border-r-1'>
                         <div>
                             <div className='h-[50%] w-[50.5px] p-2 border-b-1 logo'>
-                                <img src={instagram} alt="instagram" className='logo-image h-full w-full' />
+                                <a href="" target="_blank"><img src={instagram} alt="instagram" className='logo-image h-full w-full' /></a>
                             </div>
                             <div className='h-[50%] w-[50.5px] p-2 logo z-0'>
-                                <img src={youtube} alt="youtube" className='logo-image h-full w-full' />
+                                <a href="https://www.youtube.com/@geriadi-music" target="_blank"><img src={youtube} alt="youtube" className='logo-image h-full w-full' /></a>
                             </div>
                         </div>
                     </div>
@@ -76,10 +77,10 @@ export default function Navbar(){
                     <div className='top flex border-r-1'>
                         <div>
                             <div className='h-[50%] w-[50.5px] p-3 border-b-1 logo z-0'>
-                                <img src={question} alt="random" className='logo-image h-full w-full' />
+                                <a href="https://www.youtube.com/watch?v=5Sw0PRaf2ag" target="_blank"><img src={question} alt="random" className='logo-image h-full w-full' /></a>
                             </div>
                             <div className='h-[50%] w-[50.5px] p-2 logo z-0'>
-                                <img src={spotify} alt="spotify" className='logo-image h-full w-full' />
+                                <a href="https://open.spotify.com/artist/0tKruDByFx67M9en9RTuLf?si=Ek4Fe-UVQSOPuyMoag5mDA" target="_blank"><img src={spotify} alt="spotify" className='logo-image h-full w-full' /></a>
                             </div>
                         </div>
                     </div>

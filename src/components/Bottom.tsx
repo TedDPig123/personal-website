@@ -1,4 +1,5 @@
 import upArrow from "../assets/up-arrow.png"
+import {Link} from 'react-scroll';
 
 export default function Bottom(){
     return(
@@ -86,9 +87,9 @@ export default function Bottom(){
                     <div>Deployed with Vercel. Last updated August 2025.</div>
                     <div className="bottom-rights font-helveticabold text-[24px] mt-3">© Gerindra Adi, all rights reserved.</div>
                 </div>
-                <div className="to-the-top font-helveticabold text-[40px] leading-[25px] underline flex items-center cursor-pointer">
+                <Link to='top-of-page' smooth={true} duration={500}><div className="to-the-top font-helveticabold text-[40px] leading-[25px] underline flex items-center cursor-pointer">
                     Back to the top<span><img className="top-arrow h-auto w-[40px] ml-2" src={upArrow} alt="upArrow" /></span>
-                </div>
+                </div></Link>
             </div>
         </div>
     </>
