@@ -12,6 +12,7 @@ export default function Projects(){
                         imageURL={project.imageURL}
                         description={project.description}
                         stack={project.stack}
+                        link={project.link}
                         key={project.id}
                     />
                 )}

@@ -5,6 +5,7 @@ import github from '../assets/github.png'
 import question from '../assets/question.png'
 import spotify from '../assets/spotify.png'
 import youtube from '../assets/youtube.png'
+import resumePDF from '../assets/resume.pdf';
 
 import React, { useRef } from 'react'
 import Typed from 'typed.js'
@@ -41,7 +42,7 @@ export default function Navbar(){
                 <ul className='menu-options flex items-center p-7 justify-around text-[16px] border-r-1 min-w-[410px] grow-10'>
                     <Link to='about' smooth={true} duration={500}><li id="about-me-1"className='cursor-pointer'>about me</li></Link>
                     <Link to='projects' smooth={true} duration={500}><li id="projects-1"className='cursor-pointer'>projects</li></Link>
-                    <li id='resume' className='cursor-pointer'>resume</li>
+                    <a href={resumePDF} target="_blank"><li id='resume' className='cursor-pointer'>resume</li></a>
                     <a href="mailto:gerindraadi@gmail.com"><li id='contact' className='cursor-pointer'>contact</li></a>
                 </ul>
                 <ul className='menu-options-phone flex items-center justify-around text-[16px] border-r-1 grow-10 hidden'>
@@ -99,20 +100,20 @@ export default function Navbar(){
                     <div className='top flex-col'>
                         <div>
                             <div className='border-b-1 logo p-1'>
-                                <img src={linkedInLogo} alt="linkedin" className='logo-image ' />
+                                <a href="https://www.linkedin.com/in/gerindra-adi/" target="_blank"><img src={linkedInLogo} alt="linkedin" className='logo-image ' /></a>
                             </div>
                             <div className='logo z-0 p-1'>
-                                <img src={github} alt="githubs" className='logo-image' />
+                                <a href="https://github.com/TedDPig123" target="_blank"><img src={github} alt="githubs" className='logo-image' /></a>
                             </div>
                         </div>
                     </div>
                     <div className='top flex-col'>
                         <div>
                             <div className='border-b-1 border-l-1 logo p-1'>
-                                <img src={instagram} alt="instagram" className='logo-image ' />
+                                <a href="" target="_blank"><img src={instagram} alt="instagram" className='logo-image ' /></a>
                             </div>
                             <div className='logo z-0 p-1 border-l-1'>
-                                <img src={spotify} alt="spotify" className='logo-image' />
+                                <a href="https://open.spotify.com/artist/0tKruDByFx67M9en9RTuLf?si=Ek4Fe-UVQSOPuyMoag5mDA" target="_blank"><img src={spotify} alt="spotify" className='logo-image' /></a>
                             </div>
                         </div>
                     </div>

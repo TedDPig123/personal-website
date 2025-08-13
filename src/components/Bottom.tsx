@@ -1,5 +1,6 @@
 import upArrow from "../assets/up-arrow.png"
 import {Link} from 'react-scroll';
+import resumePDF from '../assets/resume.pdf';
 
 export default function Bottom(){
     return(
@@ -34,48 +35,48 @@ export default function Bottom(){
                 <div className="flex-col mr-5 grow-2">
                     <div className="flex w-full"><span className="font-editorialregular text-[40px] select-none">menu</span><span className="bg-black w-full h-[1px] ml-4 mt-7.5 mr-[30%]"></span></div>
                     <div className="w-full border-1 border-solid border-black flex font-helveticaregular text-[18px] justify-between bottom-a">
-                        <div className="b-link m-1 mb-12 mt-3 cursor-pointer">
+                        <a href="mailto:gerindraadi@gmail.com"><div className="b-link m-1 mb-12 mt-3 cursor-pointer">
                             contact
-                        </div>
-                        <div className="b-link m-1 mt-12 mb-3 cursor-pointer">
+                        </div></a>
+                        <Link to='projects' smooth={true} duration={500}><div className="b-link m-1 mt-12 mb-3 cursor-pointer">
                             projects
-                        </div>
-                        <div className="b-link m-1 mt-4 cursor-pointer">
+                        </div></Link>
+                        <a href={resumePDF} target="_blank"><div className="b-link m-1 mt-4 cursor-pointer">
                             resume
-                        </div>
-                        <div className="b-link m-1 mt-10 cursor-pointer">
+                        </div></a>
+                        <Link to='about' smooth={true} duration={500}><div className="b-link m-1 mt-10 cursor-pointer">
                             about me
-                        </div>
+                        </div></Link>
                     </div>
                 </div>
                 
                 <div className="flex-col mr-5 grow-2">
                     <div className="flex w-full"><span className="font-editorialregular text-[40px] select-none">socials</span><span className="bg-black w-full h-[1px] ml-4 mt-7.5 mr-[40%]"></span></div>
                     <div className="w-full border-1 border-solid border-black flex font-helveticaregular text-[18px] justify-between b-link-soc bottom-a">
-                        <div className="b-link m-1 mb-9 mt-4 cursor-pointer">
+                        <a href="https://www.linkedin.com/in/gerindra-adi/" target="_blank"><div className="b-link m-1 mb-9 mt-4 cursor-pointer">
                             linkedin
-                        </div>
+                        </div></a>
                         <div className="b-link m-1 mt-10 mb-1 text-center cursor-pointer">
-                            <div>
+                            <a href="https://github.com/TedDPig123" target="_blank"><div>
                                 github
-                            </div>
+                            </div></a>
                              <div className="text-[10.5px] cursor-pointer">(is that a social?)</div>
                         </div>
-                        <div className="b-link m-1 mt-2 cursor-pointer">
+                        <a href="https://www.youtube.com/@geriadi-music" target="_blank"><div className="b-link m-1 mt-2 cursor-pointer">
                             youtube
-                        </div>
-                        <div className="b-link m-1 mt-13 cursor-pointer">
+                        </div></a>
+                        <a href="" target="_blank"><div className="b-link m-1 mt-13 cursor-pointer">
                             instagram
-                        </div>
+                        </div></a>
                     </div>
                 </div>
 
                 <div className="spotify flex-col grow-2">
                     <div className="flex w-full"><span className="font-editorialregular text-[40px] select-none">music!</span><span className="bg-black w-full h-[1px] ml-4 mt-7.5 mr-[40%]"></span></div>
                     <div className="w-full border-1 border-solid border-black flex font-helveticaregular text-[18px] justify-end b-link-s bottom-a">
-                        <div className="b-link m-1 mb-13 mr-5 mt-2 cursor-pointer">
+                        <a href="https://open.spotify.com/artist/0tKruDByFx67M9en9RTuLf?si=Ek4Fe-UVQSOPuyMoag5mDA" target="_blank"><div className="b-link m-1 mb-13 mr-5 mt-2 cursor-pointer">
                             spotify
-                        </div>
+                        </div></a>
                     </div>
                 </div>
                 

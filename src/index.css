@@ -271,6 +271,9 @@ body{
     margin: 40px;
     margin-top: 0px;
   }
+  .project-name{
+    font-size: 18px;
+  }
 }
 
 @media screen and (max-width: 600px) {

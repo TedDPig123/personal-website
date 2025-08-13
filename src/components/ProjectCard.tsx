@@ -5,19 +5,20 @@ interface ProjectCardProps {
     imageURL: string;
     description: string;
     stack: string[];
+    link: string;
 }
 
-export default function ProjectCard({ name, imageURL, description, stack }: ProjectCardProps) {
+export default function ProjectCard({ name, imageURL, description, stack, link }: ProjectCardProps) {
     return (
         <div className="project-card flex-col w-[100%] opacity-0 hidden">
-            <div className="font-helveticaregular text-[24px] ml-3.5">{name}</div>
+            <div className="project-name font-helveticaregular text-[24px] ml-3.5 overflow-ellipsis">{name}</div>
             <div className="relative w-full">
-                <img src={imageURL} alt="" className="w-full rounded-2xl" />                
-                <img
+                <img src={imageURL} alt="" className="w-[full] rounded-2xl object-cover aspect-3/2" />                
+                {link.length > 0 && <a href={link} target="_blank"><img
                     src={github}
                     alt="GitHub"
-                    className="w-[35px] absolute top-2 right-2 z-10"
-                />
+                    className="w-[35px] absolute top-2 right-2 z-10 shadow-[0_0_10px_5px_rgba(0,0,0,0.25)] rounded-full hover:w-[38px] transition-all duration-300"
+                /></a>}
             </div>
             <div className="font-helveticaregular text-[12px] bg-[#242424] rounded-2xl mt-2 text-[#C7C7C7] p-2">
                 {description}
