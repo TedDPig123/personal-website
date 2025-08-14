@@ -9,6 +9,7 @@ import music2 from "./landingshots/music2.png"
 import music3 from "./landingshots/music3.png"
 
 const images = [comp1, comp2, comp3, art1, art2, art3, music1, music2, music3];
+
 interface TrailImage {
     element: HTMLImageElement;
     rotation: number;
@@ -32,7 +33,16 @@ function waitForElements(selectors: string[], callback: () => void): void {
     }, 20);
 }
 
-waitForElements([".track-container", ".name-overlay"], () => {
+waitForElements([".track-container", ".name-overlay", ".landing-photo-phone"], () => {
+    const phoneImage = document.getElementById("landing-photo-phone-picture") as HTMLImageElement;
+
+    setInterval(()=>{
+        const random : number = Math.floor(Math.random()*images.length);
+        if(phoneImage){
+            phoneImage.src = images[random];
+        }
+    },1500);
+
     // courtesy of Codegrid (they do really awesome stuff)
     const container = document.querySelector(".track-container") as HTMLElement;
     const nameOverlay = document.querySelector(".name-overlay") as HTMLElement;

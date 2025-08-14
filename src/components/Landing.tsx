@@ -2,6 +2,7 @@ import Projects from "./Projects"
 import Experiences from "./Experiences"
 import About from "./About"
 import Bottom from "./Bottom"
+import comp1 from "../landingshots/comp1.png"
 
 export default function Landing(){
     return(
@@ -30,6 +31,9 @@ export default function Landing(){
                         <span className="w-[100%] h-[1px] bg-black ml-4 mr-4"></span>
                         creative
                     </div>
+                        <div className="landing-photo-phone hidden">
+                        <img src={comp1} alt="" className="mt-10" id="landing-photo-phone-picture"/>
+                        </div>
                     </div>
                 </div>
             </section>

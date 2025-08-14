@@ -2,6 +2,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
+
 //timer function
 const delay = (ms: number): Promise<void> => new Promise(res => setTimeout(res, ms));
 const timer = async (ms: number): Promise<void> => {
@@ -194,6 +195,4 @@ function addAnimation(): void {
       });
     }
   });
-
-  // setInterval()
 }

@@ -479,4 +479,7 @@ body{
   .menu-options-phone{
     display:flex;
   }
+  .landing-photo-phone{
+    display:inline;
+  }
 }
