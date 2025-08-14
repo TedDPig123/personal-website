@@ -140,7 +140,7 @@ waitForElements([".about-portrait"], () => {
 
     let moveTimeout: number | null = null;
 
-    function setInitialMousePos(event) {
+    function setInitialMousePos(event : MouseEvent) {
         mouseX = event.clientX;
         mouseY = event.clientY;        
         document.removeEventListener("mousemove", setInitialMousePos, false);
