@@ -61,7 +61,7 @@ waitForElements([".about-portrait"], () => {
             y: faceRect.top + (faceRect.height / 2)
         };
 
-        if(x > 0.8*viewportWidth){
+        if(Math.abs(x-faceCenter.x) > 0.55*viewportWidth){
             face.src = center;
             return;
         }
