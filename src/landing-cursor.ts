@@ -1,3 +1,15 @@
+import comp1 from "./landingshots/comp1.png"
+import comp2 from "./landingshots/comp2.png"
+import comp3 from "./landingshots/comp3.png"
+import art1 from "./landingshots/art1.png"
+import art2 from "./landingshots/art2.png"
+import art3 from "./landingshots/art3.png"
+import music1 from "./landingshots/music1.png"
+import music2 from "./landingshots/music2.png"
+import music3 from "./landingshots/music3.png"
+
+const images = [comp1, comp2, comp3, art1, art2, art3, music1, music2, music3];
+
 function waitForElements(selectors: string[], callback: () => void): void {
     const interval = setInterval(() => {
         const allExist = selectors.every((sel: string) => document.querySelector(sel));
@@ -8,15 +20,16 @@ function waitForElements(selectors: string[], callback: () => void): void {
     }, 20);
 }
 
-waitForElements([".track-container"], () => {
+waitForElements([".track-container", ".name-overlay"], () => {
     // courtesy of Codegrid (they do really awesome stuff)
-    const container = document.querySelector(".trail-container");
+    const container = document.querySelector(".track-container");
+    const nameOverlay = document.querySelector(".name-overlay");
 
     const config = {
         imageCount: 9,
-        imageLifespan: 750,
+        imageLifespan: 1000,
         removalDelay: 50,
-        mouseThreshold: 100,
+        mouseThreshold: 200,
         scrollThreshold: 50,
         idleCursorInterval: 300,
         inDuration: 750,
@@ -42,7 +55,7 @@ waitForElements([".track-container"], () => {
     function isInContainer(x,y){
         const rect = container.getBoundingClientRect();
         if(!rect){
-            return
+            return false;
         }
         return (
             x >= rect.left && x <= rect.right &&
@@ -66,7 +79,7 @@ waitForElements([".track-container"], () => {
     }
 
     function createTrailImage(){
-        if(!isCursorInContainer){
+        if(!isCursorInContainer || mouseY < 110 || nameOverlay?.getBoundingClientRect().top < 110){
             return;
         }
 
@@ -83,18 +96,18 @@ waitForElements([".track-container"], () => {
         const img = document.createElement("img");
         img.classList.add("trail-img");
 
-        const randomIndex = Math.floor(Math.random()*ImageTrackList.length);
+        const randomIndex = Math.floor(Math.random() * images.length);
         const rotation = (Math.random() - 0.5) * 50;
         img.src = images[randomIndex];
 
         const rect = container?.getBoundingClientRect();
         const relativeX = mouseX - rect?.left;
-        const relativeY = mouseX - rect?.top;
+        const relativeY = mouseY - rect?.top;
 
+        img.style.position = 'absolute';
         img.style.left = `${relativeX}px`;
-        img.style.right = `${relativeY}px`;
+        img.style.top = `${relativeY}px`; 
         img.style.transform = `translate(-50%, -50%) rotate(${rotation}deg) scale(0)`;
-        img.style.transition = `transform ${config.inDuration}ms ${config.inEasing}`;
 
         container?.appendChild(img);
 
@@ -134,7 +147,7 @@ waitForElements([".track-container"], () => {
         if(now >= oldestImage.removeTime){
             const imgToRemove = trail.shift();
 
-            imgToRemove.element.style.transition = `transform ${config.outDuration}ms ${config.outEasing}`;
+            // imgToRemove.element.style.transition = `transform ${config.outDuration}ms ${config.outEasing}`;
             imgToRemove.element.style.transform = `translate(-50%, -50%) rotate(${imgToRemove.rotation}deg) scale(0)`;
             lastRemovalTime = now;
 
@@ -151,6 +164,59 @@ waitForElements([".track-container"], () => {
         mouseY = e.clientY;
         isCursorInContainer = isInContainer(mouseX, mouseY);
 
-        if
-    })
+        if(isCursorInContainer){
+            isMoving = true;
+            clearTimeout(window.moveTimeout);
+            window.moveTimeout = setTimeout(()=>{
+                isMoving = false;
+            },100)
+        }
+    });
+
+    // window.addEventListener("scroll", ()=>{
+    //     isCursorInContainer = isInContainer(mouseX, mouseY);
+
+    //     if(isCursorInContainer){
+    //         isMoving = true;
+    //         lastMouseX += (Math.random());
+
+    //         clearTimeout(window.scrollTimeout);
+    //         window.scrollTimeout = setTimeout(()=>{
+    //             isMoving = false;
+    //         },100)
+    //     }
+    // }, {passive:false});
+
+    // window.addEventListener("scroll", ()=>{
+    //     const now = Date.now();
+    //     isScrolling = true;
+
+    //     if(now - lastScrollTime < config.scrollThreshold){
+    //         return;
+    //     }
+
+    //     lastScrollTime = now;
+
+    //     if(!scrollTicking){
+    //         requestAnimationFrame(()=>{
+    //             if(isScrolling){
+    //                 createScrollTrailImage();
+    //                 isScrolling = false;
+    //             }
+    //             scrollTicking = false;
+    //         });
+    //         scrollTicking = true;
+    //     }
+    // }, {passive: true});
+
+    function animate(){
+        const viewportWidth = window.innerWidth;
+        if(viewportWidth < 500){
+            return;
+        }
+        createTrailImage();
+        removeOldImages();
+        requestAnimationFrame(animate);
+    };
+    animate();
 });

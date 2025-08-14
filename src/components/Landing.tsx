@@ -2,19 +2,13 @@ import Projects from "./Projects"
 import Experiences from "./Experiences"
 import About from "./About"
 import Bottom from "./Bottom"
-import comp1 from "../landingshots/comp1.png"
-import comp2 from "../landingshots/comp2.png"
-import comp3 from "../landingshots/comp3.png"
-import art1 from "../landingshots/art1.png"
-import music1 from "../landingshots/music1.png"
 
 export default function Landing(){
     return(
         <div className="landing-container relative">
-
             <section className="fixed top-0 z-0 w-full">
                 <div className="relative">
-                    <div className="w-full h-[100vh] bg-white">
+                    <div className="w-full h-[100vh] bg-white track-container">
                     <div className="hi-im font-editoriallight text-[4.5vw] leading-[4vw] pt-[20vh] mr-[6%] ml-[5%] mb-[2%] flex justify-between items-center select-none text-black">
                         <span>Hi</span>
                         <span className="w-[100%] h-[1px] bg-black mr-4 ml-4"></span>
@@ -29,16 +23,14 @@ export default function Landing(){
                             ADI
                         </div>
                     </div>
+                    <div className="tagline font-editorialitalic text-[3vw] pt-[3vw] flex justify-between items-center select-none text-black mr-[5%] ml-[5%]">
+                        developer 
+                        <span className="w-[100%] h-[1px] bg-black ml-4 mr-4"></span>
+                        artist
+                        <span className="w-[100%] h-[1px] bg-black ml-4 mr-4"></span>
+                        creative
                     </div>
-
-                    <div className="landing-shot-container absolute top-[25vw] w-full">
-                        <div className="grid grid-cols-3 justify-center">
-                            <img src={art1} alt="" className=""/>
-                            <img src={comp2} alt="" className=""/>
-                            <img src={music1} alt="" className=""/>
-                        </div>
                     </div>
-
                 </div>
             </section>
 
@@ -67,7 +59,7 @@ export default function Landing(){
             <section className="h-[53vh] rest-of-stuff-container">
                 <div className="sticky top-4 z-10">
                     {/* blankspace */}
-                    <div className="h-[120vh] m-4 track-container"></div>
+                    <div className="h-[120vh] m-4 relative"></div>
                     {/* important */}
                     <div className="name-overlay h-[65vw] bg-black m-4 mb-0">
                     </div>
