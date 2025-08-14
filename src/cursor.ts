@@ -23,7 +23,7 @@ function waitForElements(selectors: string[], callback: () => void): void {
 }
 
 waitForElements([".about-portrait"], () => {
-    const face = document.querySelector(".about-portrait");
+    const face = document.querySelector(".about-portrait") as HTMLImageElement;
 
     if (!face) {
         return;
@@ -43,8 +43,6 @@ waitForElements([".about-portrait"], () => {
 
     let mouseX = 0;
     let mouseY = 0;
-    let prevMouseX = 0;
-    let prevMouseY = 0;
     let isAnimating = false;
     let animationId: number | null = null;
 
@@ -121,8 +119,6 @@ waitForElements([".about-portrait"], () => {
 
     function animate() {
         updateImage(mouseX, mouseY);
-        prevMouseX = mouseX;
-        prevMouseY = mouseY;
         
         animationId = requestAnimationFrame(animate);
     }
@@ -146,10 +142,7 @@ waitForElements([".about-portrait"], () => {
 
     function setInitialMousePos(event) {
         mouseX = event.clientX;
-        mouseY = event.clientY;
-        prevMouseX = mouseX;
-        prevMouseY = mouseY;
-        
+        mouseY = event.clientY;        
         document.removeEventListener("mousemove", setInitialMousePos, false);
     }
 
