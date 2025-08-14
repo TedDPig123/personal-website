@@ -22,28 +22,21 @@ function waitForElements(selectors: string[], callback: () => void): void {
     }, 20);
 }
 
-waitForElements([".about-section", ".about-portrait"], () => {
-    const container = document.querySelector(".about-section");
+waitForElements([".about-portrait"], () => {
     const face = document.querySelector(".about-portrait");
 
-    if (!container || !face) {
+    if (!face) {
         return;
     }
 
-    function isInContainer(x, y) {
-        const rect = container.getBoundingClientRect();
-        const inContainer = (
-            x >= rect.left && x <= rect.right &&
-            y >= rect.top && y <= rect.bottom
-        );
-        return inContainer;
-    }
-
-    function isOnFace(x, y) {
-        const rect = face.getBoundingClientRect();
+    function isOnFace(x:number, y:number) {
+        const rect = face?.getBoundingClientRect();
+        if(!rect){
+            return
+        }
         const onFace = (
-            x >= rect.left && x <= rect.right &&
-            y >= rect.top && y <= rect.bottom
+            x >= rect.left + 80 && x <= rect.right - 80 &&
+            y >= rect.top + 80 && y <= rect.bottom - 80
         );
         return onFace;
     }
@@ -52,43 +45,84 @@ waitForElements([".about-section", ".about-portrait"], () => {
     let mouseY = 0;
     let prevMouseX = 0;
     let prevMouseY = 0;
-    let isCursorInContainer = false;
     let isAnimating = false;
     let animationId: number | null = null;
 
-    function updateImage(x, y) {
-        if (isCursorInContainer) {
-            const faceRect = face.getBoundingClientRect();
-            const faceCenter = {
-                x: faceRect.left + (faceRect.width / 2),
-                y: faceRect.top + (faceRect.height / 2)
-            };
+    function updateImage(x:number, y:number) {
+        const viewportWidth = window.innerWidth;
+        if(viewportWidth < 500){
+            return;
+        }
 
-            if (isOnFace(x, y)) {
-                face.src = center;
-            } else {
-                const deltaX = x - faceCenter.x;
-                const deltaY = y - faceCenter.y;
-                const angle = Math.atan2(deltaY, deltaX);
+        const faceRect = face?.getBoundingClientRect();
+        if (!faceRect || !face){
+            return;
+        }
+        const faceCenter = {
+            x: faceRect.left + (faceRect.width / 2),
+            y: faceRect.top + (faceRect.height / 2)
+        };
 
-                const angleDegrees = (angle * 180 / Math.PI + 360) % 360;
-                switch (true){
-                    case(angleDegrees >= 345 || angleDegrees <15):
-                        face.src = p3;
-                        break;
-                    
-                }
+        if(x > 0.8*viewportWidth){
+            face.src = center;
+            return;
+        }
+
+        if (isOnFace(x, y)) {
+            face.src = center;
+        } else {
+            const deltaX = x - faceCenter.x;
+            const deltaY = y - faceCenter.y;
+            const angle = Math.atan2(deltaY, deltaX);
+
+            const angleDegrees = (angle * 180 / Math.PI + 360) % 360;
+            switch (true){
+                case(angleDegrees >= 345 || angleDegrees <15):
+                    face.src = p3;
+                    break;
+                case(angleDegrees >= 15 && angleDegrees <45):
+                    face.src = p4;
+                    break;
+                case(angleDegrees >= 45 && angleDegrees <75):
+                    face.src = p5;
+                    break;
+                case(angleDegrees >= 75 && angleDegrees <105):
+                    face.src = p6;
+                    break;
+                case(angleDegrees >= 105 && angleDegrees <135):
+                    face.src = p7;
+                    break;
+                case(angleDegrees >= 135 && angleDegrees <165):
+                    face.src = p8;
+                    break;
+                case(angleDegrees >= 165 && angleDegrees <195):
+                    face.src = p9;
+                    break;
+                case(angleDegrees >= 195 && angleDegrees <225):
+                    face.src = p10;
+                    break;
+                case(angleDegrees >= 225 && angleDegrees <255):
+                    face.src = p11;
+                    break;
+                case(angleDegrees >= 255 && angleDegrees <285):
+                    face.src = p0;
+                    break;
+                case(angleDegrees >= 285 && angleDegrees <315):
+                    face.src = p1;
+                    break;
+                case(angleDegrees >= 315 && angleDegrees <345):
+                    face.src = p2;
+                    break;
+                default:
+                    face.src = center;
             }
         }
     }
 
     function animate() {
-        // Check if mouse has actually moved
-        if (mouseX !== prevMouseX || mouseY !== prevMouseY) {
-            updateImage(mouseX, mouseY);
-            prevMouseX = mouseX;
-            prevMouseY = mouseY;
-        }
+        updateImage(mouseX, mouseY);
+        prevMouseX = mouseX;
+        prevMouseY = mouseY;
         
         animationId = requestAnimationFrame(animate);
     }
@@ -115,11 +149,6 @@ waitForElements([".about-section", ".about-portrait"], () => {
         mouseY = event.clientY;
         prevMouseX = mouseX;
         prevMouseY = mouseY;
-        isCursorInContainer = isInContainer(mouseX, mouseY);
-        
-        if (isCursorInContainer) {
-            startAnimation();
-        }
         
         document.removeEventListener("mousemove", setInitialMousePos, false);
     }
@@ -129,24 +158,21 @@ waitForElements([".about-section", ".about-portrait"], () => {
     document.addEventListener("mousemove", (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        const wasInContainer = isCursorInContainer;
-        isCursorInContainer = isInContainer(mouseX, mouseY);
 
-        if (isCursorInContainer) {
-            startAnimation();
-            
-            if (moveTimeout) {
-                clearTimeout(moveTimeout);
-            }
-            
-            moveTimeout = setTimeout(() => {
-                stopAnimation();
-            }, 100);
-
-        } else if (wasInContainer && !isCursorInContainer) {
-            stopAnimation();
+        startAnimation();
+        
+        if (moveTimeout) {
+            clearTimeout(moveTimeout);
         }
+        
+        moveTimeout = setTimeout(() => {
+            stopAnimation();
+        }, 100);
     });
+
+    document.addEventListener("scroll", () => {
+        startAnimation();
+    }, { passive: true });
 
     document.addEventListener("mouseleave", () => {
         stopAnimation();
