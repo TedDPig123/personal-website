@@ -22,6 +22,41 @@ function waitForElements(selectors: string[], callback: () => void): void {
     }, 20);
 }
 
+function preloadImages(): void {
+    const images = [center, p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
+    images.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+function throttle<T extends (...args: any[]) => void>(func: T, delay: number): T {
+    let timeoutId: number | null = null;
+    let lastExecTime = 0;
+    return ((...args: any[]) => {
+        const currentTime = Date.now();
+        
+        if (currentTime - lastExecTime > delay) {
+            func(...args);
+            lastExecTime = currentTime;
+        } else {
+            if (timeoutId) clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                func(...args);
+                lastExecTime = Date.now();
+            }, delay - (currentTime - lastExecTime));
+        }
+    }) as T;
+}
+
+function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T {
+    let timeoutId: number | null = null;
+    return ((...args: any[]) => {
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func(...args), delay);
+    }) as T;
+}
+
 waitForElements([".about-portrait"], () => {
     const face = document.querySelector(".about-portrait") as HTMLImageElement;
 
@@ -29,145 +64,140 @@ waitForElements([".about-portrait"], () => {
         return;
     }
 
-    function isOnFace(x:number, y:number) {
-        const rect = face?.getBoundingClientRect();
-        if(!rect){
-            return
-        }
-        const onFace = (
-            x >= rect.left + 80 && x <= rect.right - 80 &&
-            y >= rect.top + 80 && y <= rect.bottom - 80
+    preloadImages();
+
+    let cachedViewportWidth = window.innerWidth;
+    let cachedFaceRect: DOMRect | null = null;
+    let lastUpdateTime = 0;
+    const UPDATE_THRESHOLD = 16; // about 60fps
+
+    const imageMap = [p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
+
+    function updateCachedValues(): void {
+        cachedViewportWidth = window.innerWidth;
+        cachedFaceRect = face.getBoundingClientRect();
+    }
+
+    function isOnFace(x: number, y: number): boolean {
+        if (!cachedFaceRect) return false;
+        
+        const margin = 80;
+        return (
+            x >= cachedFaceRect.left + margin && 
+            x <= cachedFaceRect.right - margin &&
+            y >= cachedFaceRect.top + margin && 
+            y <= cachedFaceRect.bottom - margin
         );
-        return onFace;
     }
 
     let mouseX = 0;
     let mouseY = 0;
-    let isAnimating = false;
+    let currentImageSrc = center;
     let animationId: number | null = null;
 
-    function updateImage(x:number, y:number) {
-        const viewportWidth = window.innerWidth;
-        if(viewportWidth < 500){
-            return;
-        }
+    function updateImage(x: number, y: number): void {
+        const now = performance.now();
+        if (now - lastUpdateTime < UPDATE_THRESHOLD) return;
+        lastUpdateTime = now;
 
-        const faceRect = face?.getBoundingClientRect();
-        if (!faceRect || !face){
-            return;
-        }
+        // Skip on small screens
+        if (cachedViewportWidth < 500) return;
+
+        if (!cachedFaceRect) return;
+
         const faceCenter = {
-            x: faceRect.left + (faceRect.width / 2),
-            y: faceRect.top + (faceRect.height / 2)
+            x: cachedFaceRect.left + (cachedFaceRect.width / 2),
+            y: cachedFaceRect.top + (cachedFaceRect.height / 2)
         };
 
-        if(Math.abs(x-faceCenter.x) > 0.55*viewportWidth){
-            face.src = center;
-            return;
-        }
+        let newImageSrc: string;
 
-        if (isOnFace(x, y)) {
-            face.src = center;
+        if (Math.abs(x - faceCenter.x) > 0.55 * cachedViewportWidth) {
+            newImageSrc = center;
+        } else if (isOnFace(x, y)) {
+            newImageSrc = center;
         } else {
             const deltaX = x - faceCenter.x;
             const deltaY = y - faceCenter.y;
             const angle = Math.atan2(deltaY, deltaX);
-
             const angleDegrees = (angle * 180 / Math.PI + 360) % 360;
-            switch (true){
-                case(angleDegrees >= 345 || angleDegrees <15):
-                    face.src = p3;
-                    break;
-                case(angleDegrees >= 15 && angleDegrees <45):
-                    face.src = p4;
-                    break;
-                case(angleDegrees >= 45 && angleDegrees <75):
-                    face.src = p5;
-                    break;
-                case(angleDegrees >= 75 && angleDegrees <105):
-                    face.src = p6;
-                    break;
-                case(angleDegrees >= 105 && angleDegrees <135):
-                    face.src = p7;
-                    break;
-                case(angleDegrees >= 135 && angleDegrees <165):
-                    face.src = p8;
-                    break;
-                case(angleDegrees >= 165 && angleDegrees <195):
-                    face.src = p9;
-                    break;
-                case(angleDegrees >= 195 && angleDegrees <225):
-                    face.src = p10;
-                    break;
-                case(angleDegrees >= 225 && angleDegrees <255):
-                    face.src = p11;
-                    break;
-                case(angleDegrees >= 255 && angleDegrees <285):
-                    face.src = p0;
-                    break;
-                case(angleDegrees >= 285 && angleDegrees <315):
-                    face.src = p1;
-                    break;
-                case(angleDegrees >= 315 && angleDegrees <345):
-                    face.src = p2;
-                    break;
-                default:
-                    face.src = center;
-            }
+            
+            const angleIndex = Math.floor(((angleDegrees + 105) % 360) / 30);
+            const mappedIndex = angleIndex >= 12 ? 0 : angleIndex;
+            newImageSrc = imageMap[mappedIndex] || center;
+        }
+
+        if (newImageSrc !== currentImageSrc) {
+            face.src = newImageSrc;
+            currentImageSrc = newImageSrc;
         }
     }
 
-    function animate() {
+    function animate(): void {
         updateImage(mouseX, mouseY);
-        
         animationId = requestAnimationFrame(animate);
     }
 
-    function startAnimation() {
-        if (!isAnimating) {
-            isAnimating = true;
-            animate();
+    function startAnimation(): void {
+        if (!animationId) {
+            animationId = requestAnimationFrame(animate);
         }
     }
 
-    function stopAnimation() {
-        if (isAnimating && animationId) {
-            isAnimating = false;
+    function stopAnimation(): void {
+        if (animationId) {
             cancelAnimationFrame(animationId);
             animationId = null;
         }
     }
 
-    let moveTimeout: number | null = null;
+    const handleMouseMove = throttle((e: MouseEvent) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        startAnimation();
+    }, 16);
 
-    function setInitialMousePos(event : MouseEvent) {
+    const debouncedStopAnimation = debounce(() => {
+        stopAnimation();
+    }, 150);
+
+    const handleResize = throttle(() => {
+        updateCachedValues();
+    }, 250);
+
+    const handleScroll = throttle(() => {
+        updateCachedValues();
+        startAnimation();
+        debouncedStopAnimation();
+    }, 16);
+
+    updateCachedValues();
+
+    function setInitialMousePos(event: MouseEvent): void {
         mouseX = event.clientX;
-        mouseY = event.clientY;        
-        document.removeEventListener("mousemove", setInitialMousePos, false);
+        mouseY = event.clientY;
+        document.removeEventListener("mousemove", setInitialMousePos);
     }
 
     document.addEventListener("mousemove", setInitialMousePos, { once: true });
 
     document.addEventListener("mousemove", (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-
-        startAnimation();
-        
-        if (moveTimeout) {
-            clearTimeout(moveTimeout);
-        }
-        
-        moveTimeout = setTimeout(() => {
-            stopAnimation();
-        }, 100);
-    });
-
-    document.addEventListener("scroll", () => {
-        startAnimation();
+        handleMouseMove(e);
+        debouncedStopAnimation();
     }, { passive: true });
+
+    document.addEventListener("scroll", handleScroll, { passive: true });
+    
+    window.addEventListener("resize", handleResize, { passive: true });
 
     document.addEventListener("mouseleave", () => {
         stopAnimation();
     });
+
+    return function cleanup() {
+        stopAnimation();
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("resize", handleResize);
+    };
 });
