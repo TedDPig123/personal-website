@@ -1,8 +1,8 @@
-import headshot from "../assets/cat-suit-torie-tiffany.jpg"
+import headshot from "../headshots/center.png"
 
 export default function About(){
     return(
-        <div id="about" className="w-full bg-white flex-col justify-center">
+        <div id="about" className="about-section w-full bg-white flex-col justify-center">
             <div className="w-full about text-[#ff0000] bg-white border-white flex-col text-black pt-3.5 z-10 top-0">
                 <div className="flex justify-around items-center mt-4 leading-[1px]">
                     <span className="w-[100%] h-[1px] bg-black mr-4 mb-2"></span>
