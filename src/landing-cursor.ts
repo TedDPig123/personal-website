@@ -50,12 +50,12 @@ waitForElements([".track-container", ".name-overlay", ".landing-photo-phone"], (
     const config = {
         imageCount: 9,
         imageLifespan: 1000,
-        removalDelay: 50,
+        removalDelay: 80,
         mouseThreshold: 200,
         scrollThreshold: 50,
         idleCursorInterval: 300,
         inDuration: 750,
-        outDuration: 1000,
+        outDuration: 800,
         inEasing: "cubic-bezier(.07,0.5,0.5,1)",
         outEasing: "cubic-bezier(.87, 0, .13, 1)"
     }
@@ -156,6 +156,7 @@ waitForElements([".track-container", ".name-overlay", ".landing-photo-phone"], (
             
             if (imgToRemove) {
                 imgToRemove.element.style.transform = `translate(-50%, -50%) rotate(${imgToRemove.rotation}deg) scale(0)`;
+                imgToRemove.element.style.transition = `transform ${config.outDuration}ms ${config.outEasing}`;
                 lastRemovalTime = now;
 
                 setTimeout(() => {
