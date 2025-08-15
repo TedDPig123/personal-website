@@ -12,8 +12,10 @@ export default function Projects(){
                         imageURL={project.imageURL}
                         description={project.description}
                         stack={project.stack}
+                        gitlink={project.gitlink}
                         link={project.link}
                         key={project.id}
+                        date={project.date}
                     />
                 )}
             </div>

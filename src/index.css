@@ -204,7 +204,6 @@ body{
 
 .hire-me{
   position: relative;
-  
 }
 
 /* .hire-me::before{
@@ -355,6 +354,9 @@ body{
   .currently-doing{
     display: none;
   }
+  .name-overlay{
+    height:100vh;
+  }
 }
 
 @media screen and (max-width: 680px) {
@@ -398,7 +400,7 @@ body{
     margin-right: 24px;
   }
   .name-overlay{
-    height:70vh;
+    height:100vh;
   }
   .about-portrait{
     min-width: 0px;
