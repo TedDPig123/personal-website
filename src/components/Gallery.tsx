@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import GalleryComponents1 from "./GalleryComponents-1"
 import GalleryComponents2 from "./GalleryComponents-2"
+import { experiencesList } from '../content/ExperiencesList';
 import Lenis from "lenis";
 
 export default function Gallery() {
@@ -69,16 +70,11 @@ export default function Gallery() {
                 className='gallery-container gallery flex w-full overflow-x-scroll bg-black text-white pl-22 pr-22 rounded-xl pb-5'
                 style={{ scrollBehavior: 'auto' }}
             >
-                <GalleryComponents1 />
-                <GalleryComponents2 />
-                <GalleryComponents1 />
-                <GalleryComponents2 />
-                <GalleryComponents1 />
-                <GalleryComponents2 />
-                <GalleryComponents1 />
-                <GalleryComponents2 />
-                <GalleryComponents1 />
-                <GalleryComponents2 />
+                {experiencesList.map((exp, i)=>{
+                    return (i%2===0 ? 
+                    <GalleryComponents1 key={exp.id} position={exp.position} text={exp.text} date={exp.date} place={exp.place}/> : 
+                    <GalleryComponents2 key={exp.id} position={exp.position} text={exp.text} date={exp.date} place={exp.place}/> )
+                })}
             </div>
 
             {showLeftArrow && (
@@ -102,13 +98,13 @@ export default function Gallery() {
                 </button>
             )}
 
-            <div className="swipe-desktop absolute bottom-[20px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 select-none ease-in-out">
+            <div className="swipe-desktop absolute top-[30px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 select-none ease-in-out">
                 <div className="bg-black bg-opacity-75 text-white rounded-lg text-sm font-telegraf">
                     &lt; Scroll horizontally &gt;
                 </div>
             </div>
 
-            <div className="swipe-phone hidden absolute bottom-[20px] left-1/2 -translate-x-1/2 -translate-y-[-30%] z-10">
+            <div className="swipe-phone hidden absolute top-[15px] left-1/2 -translate-x-1/2 -translate-y-[-30%] z-10">
                 <div className="bg-black bg-opacity-75 text-[#c8c8c8] rounded-lg text-sm font-telegraf">
                     &lt; swipe horizontally &gt;
                 </div>
