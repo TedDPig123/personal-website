@@ -15,18 +15,23 @@ export default function About(){
                      <span className="w-[100%] h-[1px] bg-black ml-4 mb-2"></span>
                 </div>
             </div>
-            <div className="about-section bg-[#D9D9D9] px-[8vw] z-5  ml-4 mr-4 flex items-center">
 
-                <img className="about-portrait m-5 min-w-[400px] w-[30%]" src={headshot} alt="headshot of me" />
+            <div className="about-section bg-[#D9D9D9] p-[3vw] flex items-center just w-full">
+                <div className="flex justify-center w-full">
+                    <img className="about-portrait m-5 mr-0 min-w-[400px] w-[80vw]" src={headshot} alt="headshot of me" />
+                </div>
 
-                <div className="about-text flex-col mr-20 mt-20 mb-20 ml-5">
-                    <div className="font-helveticabold text-[4.5vw] tracking-[-0.03em] leading-[4vw]">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <div className="about-text flex-col ml-15 width-full">
+                    <div className="font-helveticabold text-5xl tracking-[-0.1rem] leading-[2.8rem] min-text">
+                        At any given time there are like ten different things I want to do. The last thing I want to do, though, is be boring.
                     </div>
                     <div className="mt-7 text-[16px]">
-                   Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
+                        Hi, I'm Geri. Glad to see you've stumbled on to my website, unless you're a potential employer, in which case: it was fate that you found this website and now you have to hire me. I don't make the rules. (Just kidding, unless...).
+                        <br /><br />
+                        I'm a rising senior at UMass Amherst studying computer science, and I'm currently working as an Undergraduate Researcher for the Human-Computer-Interaction and Visualization Lab (HCI-VIS) at UMass for the summer. I love designing fun user experiences and thinking of creative ways to put my programming skills to use! Right now, 
+                        both academically and personally, I'm exploring as many sides of software development as I can, from AI/ML and the backend to UI/UX and the frontend. However, going forward I want to further explore the ways that software experiences can aid in story-telling, and the ways it can connect us to our humanity more than distance ourselves from it, be it through compelling user experiences or software made with the user in mind.
+                        <br /><br />
+                        Beyond the computer, I just love creating things and engaging in self-expression through the pursuit of a lot of hobbies. Some may argue I've got too many hobbies. They may be right. I like playing music on my guitar and writing songs, though music production is still pretty difficult for me (still not enough to stop me - check out my song on spotify! :p). I also love sketching, collage-making, embroidery, and acting on stage in theater productions.
                     </div>
                 </div>
                 

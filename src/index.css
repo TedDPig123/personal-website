@@ -273,12 +273,32 @@ body{
   overflow: hidden;
 }
 
+@media screen and (max-width: 1100px) {
+  .about-section{
+    flex-direction: column;
+  }
+  .about-portrait{
+    width:500px
+  }
+}
+
 @media screen and (max-width: 900px) {
   .projects-container{
     grid-template-columns: 1fr 1fr;
   }
   .about-section{
     flex-direction: column;
+  }
+  .about-portrait{
+    min-width: 0px;
+    width:500px;
+    padding-left: calc(0.25rem * 8);
+    padding-right: calc(0.25rem * 8);
+
+  }
+  .about-text{
+    margin-left: 30px;
+    margin-right: 30px;
   }
   .about-text{
     margin: 40px;
@@ -404,10 +424,8 @@ body{
   }
   .about-portrait{
     min-width: 0px;
-    width:100%;
-    padding-left: calc(0.25rem * 8);
-    padding-right: calc(0.25rem * 8);
-
+    margin:0px;
+    margin-bottom: 20px;
   }
   .about-text{
     margin-left: 30px;

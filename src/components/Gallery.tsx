@@ -72,8 +72,8 @@ export default function Gallery() {
             >
                 {experiencesList.map((exp, i)=>{
                     return (i%2===0 ? 
-                    <GalleryComponents1 key={exp.id} position={exp.position} text={exp.text} date={exp.date} place={exp.place}/> : 
-                    <GalleryComponents2 key={exp.id} position={exp.position} text={exp.text} date={exp.date} place={exp.place}/> )
+                    <GalleryComponents1 key={exp.id} position={exp.position} text={exp.text} date={exp.date} place={exp.place} deskTop={exp.deskTop} phoneTop={exp.phoneTop}/> : 
+                    <GalleryComponents2 key={exp.id} position={exp.position} text={exp.text} date={exp.date} place={exp.place} deskTop={exp.deskTop} phoneTop={exp.phoneTop}/> )
                 })}
             </div>
 
@@ -110,8 +110,8 @@ export default function Gallery() {
                 </div>
             </div>
 
-            <div className="left-block-gall left-0 w-20 absolute z-20 top-[10%] h-100 bg-gradient-to-r from-black from-50% to-transparent pointer-events-none"></div>
-            <div className="right-block-gall right-0 w-20 absolute z-20 top-[10%] h-100 bg-gradient-to-l from-black from-50% to-transparent pointer-events-none"></div>            
+            <div className="left-block-gall left-0 w-20 absolute z-20 top-[10%] h-120 bg-gradient-to-r from-black from-50% to-transparent pointer-events-none"></div>
+            <div className="right-block-gall right-0 w-20 absolute z-20 top-[10%] h-120 bg-gradient-to-l from-black from-50% to-transparent pointer-events-none"></div>            
             <div className="gallery-bar left-20 right-20 absolute top-[50%] z-10 h-[3px] bg-white"></div>
         </div>
     )

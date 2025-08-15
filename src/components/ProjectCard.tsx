@@ -42,11 +42,11 @@ export default function ProjectCard({ name, imageURL, description, stack, gitlin
             </div>
             <div className="font-helveticaregular text-[12px] bg-[#242424] rounded-2xl mt-2 text-[#C7C7C7] p-2">
                 {description}
-                <div className='flex w-full justify-between'>
+                <div className='flex w-full justify-between items-center'>
                     <div className='bg-[#484848] rounded-2xl pl-2 pr-2 pt-1 pb-1 mt-1.5 w-fit shadow-2xl'>
                         {stack.map((tool: string, index: number) =>
                             index > 0 ?
-                            <span key={tool}> | {tool}</span> :
+                            <span key={tool}> <span className='text-gray-400'>|</span> {tool}</span> :
                             <span key={tool}>{tool}</span>
                         )}
                     </div>
