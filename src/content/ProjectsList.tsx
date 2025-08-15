@@ -75,7 +75,7 @@ const projectsList : {id:number, name: string, imageURL: string, description: st
         stack:["JavaScript", "HTML", "CSS", "IndexedDB", "SQL", "CRUD Operations"],
         gitlink: "https://github.com/TedDPig123/TacTile",
         link: "",
-         date: "2024",
+        date: "2024",
     },
     
 ]
