@@ -43,7 +43,7 @@ export default function Navbar(){
                     <Link to='about' smooth={true} duration={500}><li id="about-me-1"className='cursor-pointer'>about me</li></Link>
                     <Link to='projects' smooth={true} duration={500}><li id="projects-1"className='cursor-pointer'>projects</li></Link>
                     <a href={resumePDF} target="_blank"><li id='resume' className='cursor-pointer'>resume</li></a>
-                    <a href="mailto:gerindraadi@gmail.com"><li id='contact' className='cursor-pointer'>contact</li></a>
+                    <a href="mailto:gerindraadi@gmail.com"><li id='contact' className='cursor-pointer' title="link to my email.">contact</li></a>
                 </ul>
                 <ul className='menu-options-phone flex items-center justify-around text-[16px] border-r-1 grow-10 hidden'>
                     <li id='resume' className='cursor-pointer'>resume</li>

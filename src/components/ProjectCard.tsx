@@ -25,6 +25,7 @@ export default function ProjectCard({ name, imageURL, description, stack, gitlin
                             src={github}
                             alt="GitHub"
                             className="relative w-[35px] rounded-full hover:w-[37px] transition-all duration-300"
+                            title="link to github site."
                         />
                     </a>
                 )}
@@ -36,6 +37,7 @@ export default function ProjectCard({ name, imageURL, description, stack, gitlin
                             src={linkImg}
                             alt="External Link"
                             className="relative w-[32px] hover:w-[34px] transition-all duration-300"
+                            title="link to project site."
                         />
                     </a>
                 )}
