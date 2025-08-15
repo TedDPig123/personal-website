@@ -500,6 +500,18 @@ body{
     display:flex;
   }
   .landing-photo-phone{
-    display:inline;
+    display:flex;
+    width: 100%;
+  }
+  
+  #landing-photo-phone-picture{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 90%;
+  }
+
+  .gallery-container{
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 }
