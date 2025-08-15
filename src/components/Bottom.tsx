@@ -65,7 +65,7 @@ export default function Bottom(){
                         <a href="https://www.youtube.com/@geriadi-music" target="_blank"><div className="b-link m-1 mt-2 cursor-pointer">
                             youtube
                         </div></a>
-                        <a href="" target="_blank"><div className="b-link m-1 mt-13 cursor-pointer">
+                        <a href="https://www.instagram.com/geri_does_things?igsh=MXJjbGJjaXJsdmhn&utm_source=qr" target="_blank"><div className="b-link m-1 mt-13 cursor-pointer">
                             instagram
                         </div></a>
                     </div>

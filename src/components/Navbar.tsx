@@ -71,7 +71,7 @@ export default function Navbar(){
                     <div className='top flex border-r-1'>
                         <div>
                             <div className='h-[50%] w-[50.5px] p-2 border-b-1 logo'>
-                                <a href="" target="_blank"><img src={instagram} alt="instagram" className='logo-image h-full w-full' /></a>
+                                <a href="https://www.instagram.com/geri_does_things?igsh=MXJjbGJjaXJsdmhn&utm_source=qr" target="_blank"><img src={instagram} alt="instagram" className='logo-image h-full w-full' /></a>
                             </div>
                             <div className='h-[50%] w-[50.5px] p-2 logo z-0'>
                                 <a href="https://www.youtube.com/@geriadi-music" target="_blank"><img src={youtube} alt="youtube" className='logo-image h-full w-full' /></a>
@@ -110,7 +110,7 @@ export default function Navbar(){
                     <div className='top flex-col'>
                         <div>
                             <div className='border-b-1 border-l-1 logo p-1'>
-                                <a href="" target="_blank"><img src={instagram} alt="instagram" className='logo-image ' /></a>
+                                <a href="https://www.instagram.com/geri_does_things?igsh=MXJjbGJjaXJsdmhn&utm_source=qr" target="_blank"><img src={instagram} alt="instagram" className='logo-image ' /></a>
                             </div>
                             <div className='logo z-0 p-1 border-l-1'>
                                 <a href="https://open.spotify.com/artist/0tKruDByFx67M9en9RTuLf?si=Ek4Fe-UVQSOPuyMoag5mDA" target="_blank"><img src={spotify} alt="spotify" className='logo-image' /></a>
