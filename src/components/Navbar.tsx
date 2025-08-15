@@ -92,7 +92,7 @@ export default function Navbar(){
 
                     <div className='hire-me font-editoriallight text-[35px] flex items-center justify-center select-none relative w-[150px]'>
                         <div className='hire-me-1 z-20 absolute text-center w-full'></div>
-                        <div className='z-10 absolute text-center w-full'>Hire me!!!</div>
+                        <div className='z-10 absolute text-center w-full'>Hire me!</div>
                         {/* <div className='hire-me-2 z-15 absolute w-full text-center font-helveticabold text-[30px] leading-[28px]'>You want to hire me...</div> */}
                     </div>
                 </div>
