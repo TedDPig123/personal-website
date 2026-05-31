@@ -9,11 +9,11 @@ import noImage from '../assets/no-image.png';
 const projectsList : {id:number, name: string, imageURL: string, description: string, stack : string[], gitlink: string, link: string, date: string}[] = [
     {
         id:0,
-        name:"Timeline (WiP)",
+        name:"Timeline",
         imageURL:timeline,
-        description:"Working with some friends to make a digital multimedia diary where you can chronicle each day with a canvas of doodles, images, videos, and text. A digital scrapbook if you will. I designed the UI and wireframe using Figma, and programmed the animations, functionality, and design of the main timeline interface. Still needs some time in the oven.",
-        stack:["TypeScript", "React.js", "MongoDB", "Docker","Go", "RESTful API"],
-        gitlink: "https://github.com/liyu-hz168/Timeline",
+        description:"A full-stack multimedia scrapbooking platform I built with React and TypeScript and run as a live production system. The frontend features an interactive, scrollable timeline interface with fluid GSAP animations and reusable, responsive components, backed by a REST API I built with Express and Prisma ORM, Google OAuth 2.0 authentication, and stateless JWT sessions. For the production stack, I deploy through Vercel, manage the codebase and version history with Git and GitHub, host the database on Neon's serverless Postgres, and use AWS S3 with presigned URLs for secure media storage. It started as a four-person coursework project and I've since taken it over as the sole developer, so I've handled the whole pipeline from local development to a deployed, maintained product.",
+        stack:["TypeScript", "React.js", "Amazon S3", "Docker", "Prisma ORM", "RESTful API"],
+        gitlink: "https://github.com/TedDPig123/Timeline",
         link: "",
         date: "2025"
     },
