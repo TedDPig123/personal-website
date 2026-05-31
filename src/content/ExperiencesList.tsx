@@ -1,13 +1,13 @@
 const experiencesList : {id:number, position:string, text:string, date:string, place:string, phoneTop:number, deskTop:number}[] = [
-    {
-        id:0,
-        position:"Undergraduate Course Assistant",
-        text:"Held weekly office hours supporting 60+ students on scalability, FastAPI, middleware, Docker containerization, Git, and documentation best practices. Collaborated with staff to develop materials on CI/CD practices, SQL-based Prisma backends, and cloud infrastructure tools like Amazon AWS S3 media storage for production-grade student projects",
-        date:"Fall 2025 - Spring 2025",
-        place:"Manning College of Information and Computer Sciences",
-        phoneTop:33,
-        deskTop:34.3
-    },
+    // {
+    //     id:0,
+    //     position:"Undergraduate Course Assistant",
+    //     text:"Held weekly office hours supporting 60+ students on scalability, FastAPI, middleware, Docker containerization, Git, and documentation best practices. Collaborated with staff to develop materials on CI/CD practices, SQL-based Prisma backends, and cloud infrastructure tools like Amazon AWS S3 media storage for production-grade student projects",
+    //     date:"Fall 2025 - Spring 2025",
+    //     place:"Manning College of Information and Computer Sciences",
+    //     phoneTop:33,
+    //     deskTop:34.3
+    // },
     {
         id:1,
         position:"Undergraduate Researcher",
