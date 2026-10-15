@@ -76,20 +76,19 @@ async function loadAllProjects(): Promise<void> {
   const projectItems = document.querySelectorAll(".project-card");
 
   for (let i = 3; i < projectItems.length; i++) {
+    // Grow from 0 to the card's natural height, then drop the inline height so the
+    // card can still resize (e.g. on window resize) after the reveal.
     gsap.fromTo(projectItems[i], {
       opacity: 0,
       y: 50,
-      height: function(_: number, target: HTMLElement): number {
-        target.style.height = "auto"; 
-        const height = target.offsetHeight;
-        target.style.height = "0px";
-        return height;
-      }
+      height: 0,
     }, {
       opacity: 1,
       y: 0,
+      height: "auto",
       duration: 0.3,
-      ease: "power1.out"
+      ease: "power1.out",
+      clearProps: "height"
     });
     await timer(200);
   }

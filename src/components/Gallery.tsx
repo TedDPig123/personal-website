@@ -72,8 +72,8 @@ export default function Gallery() {
             >
                 {experiencesList.map((exp, i)=>{
                     return (i%2===0 ? 
-                    <GalleryComponents1 key={exp.id} position={exp.position} text={exp.text} date={exp.date} place={exp.place} deskTop={exp.deskTop} phoneTop={exp.phoneTop}/> : 
-                    <GalleryComponents2 key={exp.id} position={exp.position} text={exp.text} date={exp.date} place={exp.place} deskTop={exp.deskTop} phoneTop={exp.phoneTop}/> )
+                    <GalleryComponents1 key={exp.id} position={exp.position} text={exp.text} date={exp.date} place={exp.place}/> : 
+                    <GalleryComponents2 key={exp.id} position={exp.position} text={exp.text} date={exp.date} place={exp.place}/> )
                 })}
             </div>
 

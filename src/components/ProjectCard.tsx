@@ -1,10 +1,11 @@
 import github from '../assets/github.webp'
 import linkImg from '../assets/external-link.webp'
+import BulletList from './BulletList'
 
 interface ProjectCardProps {
     name: string;
     imageURL: string;
-    description: string;
+    description: string[];
     stack: string[];
     gitlink: string;
     link: string;
@@ -32,7 +33,7 @@ export default function ProjectCard({ name, imageURL, description, stack, gitlin
                 )}
                 
                 {link.length > 0 && (
-                    <a href={link} target="_blank" className="absolute bottom-2 right-12 z-10">
+                    <a href={link} target="_blank" className={`absolute bottom-2 z-10 ${gitlink.length > 0 ? "right-12" : "right-2"}`}>
                         <div className="absolute inset-0 bg-white rounded-full blur-lg opacity-40 scale-110"></div>
                         <img
                             src={linkImg}
@@ -45,7 +46,7 @@ export default function ProjectCard({ name, imageURL, description, stack, gitlin
                 )}
             </div>
             <div className="font-helveticaregular text-[12px] bg-[#242424] rounded-2xl mt-2 text-[#C7C7C7] p-2">
-                {description}
+                <BulletList items={description} />
                 <div className='flex w-full justify-between items-center'>
                     <div className='bg-[#484848] rounded-2xl pl-2 pr-2 pt-1 pb-1 mt-1.5 w-fit shadow-2xl'>
                         {stack.map((tool: string, index: number) =>

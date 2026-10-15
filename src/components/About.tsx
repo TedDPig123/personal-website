@@ -23,7 +23,7 @@ export default function About(){
 
                 <div className="about-text flex-col ml-15 width-full">
                     <div className="font-helveticabold text-5xl tracking-[-0.1rem] leading-[2.8rem] min-text">
-                        At any given time there are like ten different things I want to do. The last thing I want to do, though, is be boring.
+                        I may want to do too many things, but the last thing I want to do is be boring.
                     </div>
                     <div className="mt-7 text-[16px]">
                         Hi, I'm Geri. Glad to see you've stumbled on to my website, unless you're a potential employer, in which case: it was fate that you found this website and now you have to hire me. I don't make the rules. (Just kidding, unless...).
