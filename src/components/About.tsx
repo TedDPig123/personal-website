@@ -4,7 +4,7 @@ export default function About(){
     return(
         <div id="about" className="w-full bg-white flex-col justify-center">
             <div className="w-full about text-[#ff0000] bg-white border-white flex-col text-black pt-3.5 z-10 top-0">
-                <div className="flex justify-around items-center mt-4 leading-[1px]">
+                <div className="flex justify-around items-center mt-4 leading-[1px] pb-3.5 pl-8 pr-8">
                     <span className="w-[100%] h-[1px] bg-black mr-4 mb-2"></span>
                     <span className="mr-2 font-editorialitalic text-[9vw] tracking-[-0.06em] leading-[9vw] select-none text-right">
                         About

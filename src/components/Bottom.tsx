@@ -85,7 +85,7 @@ export default function Bottom(){
                 <div className="bottom-text font-telegraf whitespace-pre text-[#4C4C4C] text-[18px] leading-[19px]">
                     <div>Designed using Adobe PhotoShop and Figma.</div>
                     <div>Created using React, Vite, GSAP, and Tailwind CSS.</div>
-                    <div>Deployed with Vercel. Last updated August 2025.</div>
+                    <div>Deployed with Vercel. Last updated October 2026.</div>
                     <div className="bottom-rights font-helveticabold text-[24px] mt-3">© Gerindra Adi, all rights reserved.</div>
                 </div>
                 <Link to='top-of-page' smooth={true} duration={500}><div className="to-the-top font-helveticabold text-[40px] leading-[25px] underline flex items-center cursor-pointer">

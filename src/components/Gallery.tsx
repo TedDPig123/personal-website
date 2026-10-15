@@ -64,7 +64,7 @@ export default function Gallery() {
     }, [])
 
     return (
-        <div className="relative w-full group">
+        <div className="relative w-full group mt-3.5">
             <div 
                 ref={galleryRef}
                 className='gallery-container gallery flex w-full overflow-x-scroll bg-black text-white pl-22 pr-22 rounded-xl pb-5'
