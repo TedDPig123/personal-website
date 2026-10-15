@@ -1,12 +1,12 @@
-import comp1 from "./landingshots/comp1.png"
-import comp2 from "./landingshots/comp2.png"
-import comp3 from "./landingshots/comp3.png"
-import art1 from "./landingshots/art1.png"
-import art2 from "./landingshots/art2.png"
-import art3 from "./landingshots/art3.png"
-import music1 from "./landingshots/music1.png"
-import music2 from "./landingshots/music2.png"
-import music3 from "./landingshots/music3.png"
+import comp1 from "./landingshots/comp1.webp"
+import comp2 from "./landingshots/comp2.webp"
+import comp3 from "./landingshots/comp3.webp"
+import art1 from "./landingshots/art1.webp"
+import art2 from "./landingshots/art2.webp"
+import art3 from "./landingshots/art3.webp"
+import music1 from "./landingshots/music1.webp"
+import music2 from "./landingshots/music2.webp"
+import music3 from "./landingshots/music3.webp"
 
 const IMAGES = [comp1, comp2, comp3, art1, art2, art3, music1, music2, music3];
 

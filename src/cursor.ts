@@ -1,16 +1,16 @@
-import center from './headshots/center.png'
-import p0 from './headshots/portrait0.png'
-import p1 from './headshots/portrait1.png'
-import p2 from './headshots/portrait2.png'
-import p3 from './headshots/portrait3.png'
-import p4 from './headshots/portrait4.png'
-import p5 from './headshots/portrait5.png'
-import p6 from './headshots/portrait6.png'
-import p7 from './headshots/portrait7.png'
-import p8 from './headshots/portrait8.png'
-import p9 from './headshots/portrait9.png'
-import p10 from './headshots/portrait10.png'
-import p11 from './headshots/portrait11.png'
+import center from './headshots/center.webp'
+import p0 from './headshots/portrait0.webp'
+import p1 from './headshots/portrait1.webp'
+import p2 from './headshots/portrait2.webp'
+import p3 from './headshots/portrait3.webp'
+import p4 from './headshots/portrait4.webp'
+import p5 from './headshots/portrait5.webp'
+import p6 from './headshots/portrait6.webp'
+import p7 from './headshots/portrait7.webp'
+import p8 from './headshots/portrait8.webp'
+import p9 from './headshots/portrait9.webp'
+import p10 from './headshots/portrait10.webp'
+import p11 from './headshots/portrait11.webp'
 
 const UPDATE_THRESHOLD = 16; // ~60fps
 const MIN_VIEWPORT_WIDTH = 500;
@@ -40,21 +40,27 @@ function waitForElements(selectors: string[], callback: () => void): void {
     }, 20);
 }
 
-// The portraits are large, so only fetch them once the about section is getting close,
-// and never on small screens where the face tracking is disabled.
-function preloadImagesWhenNear(face: HTMLImageElement): void {
-    const observer = new IntersectionObserver((entries) => {
-        if (!entries.some(entry => entry.isIntersecting)) return;
-        if (window.innerWidth < MIN_VIEWPORT_WIDTH) return;
-        observer.disconnect();
-        IMAGE_MAP.forEach(src => {
-            const img = new Image();
-            img.decoding = 'async';
-            img.src = src;
-        });
-    }, { rootMargin: '150% 0px' });
+// Portraits that are downloaded *and* decoded. The Image objects are kept alive so the
+// browser keeps them decoded, which makes swapping the face's src instant (no flicker).
+const decodedImages = new Set<string>([center]);
+const keepAlive: HTMLImageElement[] = [];
 
-    observer.observe(face);
+// Preload after the page has loaded (never on small screens, where face tracking is off).
+function preloadImages(): void {
+    if (window.innerWidth < MIN_VIEWPORT_WIDTH) return;
+
+    const start = () => IMAGE_MAP.forEach(src => {
+        const img = new Image();
+        img.src = src;
+        keepAlive.push(img);
+        img.decode().then(() => decodedImages.add(src)).catch(() => {});
+    });
+
+    if (document.readyState === 'complete') {
+        start();
+    } else {
+        window.addEventListener('load', start, { once: true });
+    }
 }
 
 function lightThrottle<T extends (...args: any[]) => void>(func: T, delay: number): T {
@@ -110,7 +116,7 @@ function updateImage(face: HTMLImageElement): void {
         newImageSrc = IMAGE_MAP[angleIndex >= 12 ? 0 : angleIndex] || center;
     }
 
-    if (newImageSrc !== currentImageSrc) {
+    if (newImageSrc !== currentImageSrc && decodedImages.has(newImageSrc)) {
         face.src = newImageSrc;
         currentImageSrc = newImageSrc;
     }
@@ -120,7 +126,7 @@ waitForElements([".about-portrait"], () => {
     const face = document.querySelector(".about-portrait") as HTMLImageElement;
     if (!face) return;
 
-    preloadImagesWhenNear(face);
+    preloadImages();
     updateCachedValues(face);
 
     function animate(): void {

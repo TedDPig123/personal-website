@@ -2,7 +2,7 @@ import Projects from "./Projects"
 import Experiences from "./Experiences"
 import About from "./About"
 import Bottom from "./Bottom"
-import comp1 from "../landingshots/comp1.png"
+import comp1 from "../landingshots/comp1.webp"
 
 export default function Landing(){
     return(

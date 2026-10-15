@@ -1,6 +1,12 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
+
+// Easing for the "GERI" letter-spacing animation, written like CSS cubic-bezier(x1, y1, x2, y2).
+// Tip: design one at https://cubic-bezier.com and paste the four numbers here.
+// The default below matches the previous "power1.in" ease.
+const NAME_SPACING_BEZIER = ".51,-0.01,.54,1";
 
 
 //timer function
@@ -22,7 +28,8 @@ function raf(time: number): void {
 requestAnimationFrame(raf);
 
 //scrolltrigger stuff
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, CustomEase);
+CustomEase.create("nameSpacing", NAME_SPACING_BEZIER);
 
 function waitForElements(selectors: string[], callback: () => void): void {
   const interval = setInterval(() => {
@@ -96,6 +103,8 @@ waitForElements([".name-overlay", ".orjust", ".overlay-name", ".navbar"], () => 
     }
   });
 
+  // Both timelines end at "top -20%". The name and "or — just" tweens are sized to run
+  // right up to the end of their timeline so they all finish together.
   gsap.timeline({
     scrollTrigger: {
       trigger: ".name-overlay",
@@ -103,14 +112,14 @@ waitForElements([".name-overlay", ".orjust", ".overlay-name", ".navbar"], () => 
       end: "top -20%",
       scrub: true,
     }
-  }).to(overlayName, { letterSpacing: "18.6vw", ease: "power1.in" }, 0.4)
-    .to(overlayName2, { letterSpacing: "15vw", ease: "power1.in" }, 0.3)
+  }).to(overlayName, { letterSpacing: "18.6vw", ease: "nameSpacing", duration: 0.5 }, 0.4)
+    .to(overlayName2, { letterSpacing: "15vw", ease: "nameSpacing", duration: 0.6 }, 0.3)
 
   scrollTl
     .to(forShort, { opacity: 1 }, 0.6)
     .to(geriWhite, { opacity: 1 }, 0.2)
-    .to(orJust, { opacity: 1 }, 0.5)
-    .to(orJustLine, { width: "5vw", ease: "power1.inOut" }, 0.5)
+    .to(orJust, { opacity: 1, duration: 0.6 }, 0.5)
+    .to(orJustLine, { width: "5vw", ease: "power1.inOut", duration: 0.6 }, 0.5)
     
   gsap.timeline({
     scrollTrigger: {
@@ -131,6 +140,24 @@ waitForElements([".name-overlay", ".orjust", ".overlay-name", ".navbar"], () => 
       once: true
     }
   })
+});
+
+// Lenis only re-measures the page when <html> itself resizes, but nearly all of this page's
+// content overflows a fixed-height section, so <html> never changes size. Watch the
+// sections directly so late-loading images/fonts don't leave Lenis short of the bottom.
+waitForElements([".rest-of-stuff-container"], () => {
+  const container = document.querySelector(".rest-of-stuff-container")!;
+  let resizeQueued = false;
+  const observer = new ResizeObserver(() => {
+    if (resizeQueued) return;
+    resizeQueued = true;
+    requestAnimationFrame(() => {
+      resizeQueued = false;
+      lenis.resize();
+    });
+  });
+  observer.observe(container);
+  Array.from(container.children).forEach(child => observer.observe(child));
 });
 
 let seeMore: boolean = true;
