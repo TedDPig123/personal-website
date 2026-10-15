@@ -6,7 +6,15 @@ import Lenis from "lenis";
 // Easing for the "GERI" letter-spacing animation, written like CSS cubic-bezier(x1, y1, x2, y2).
 // Tip: design one at https://cubic-bezier.com and paste the four numbers here.
 // The default below matches the previous "power1.in" ease.
-const NAME_SPACING_BEZIER = ".51,-0.01,.54,1";
+const NAME_SPACING_BEZIER = ".28,-0.01,.48,1";
+
+// Scrolling slows down while the name reveal plays, then returns to normal.
+// REVEAL_SLOWEST_SPEED: wheel/trackpad speed at the middle of the reveal (1 = normal, 0.5 = half).
+// REVEAL_SLOWDOWN_BEZIER: how the speed eases from normal down to the slowest point (and
+// mirrored back up again), written like CSS cubic-bezier(x1, y1, x2, y2).
+const REVEAL_SLOWEST_SPEED = 0.35;
+const REVEAL_SLOWDOWN_BEZIER = ".42,0,.58,1";
+let scrollSpeed = 1;
 
 
 //timer function
@@ -18,6 +26,12 @@ const timer = async (ms: number): Promise<void> => {
 //scroll smooth
 const lenis = new Lenis({
   autoRaf: true,
+  // Scale each wheel/trackpad movement by the current scroll speed (see REVEAL_SLOWEST_SPEED).
+  virtualScroll: (data) => {
+    data.deltaX *= scrollSpeed;
+    data.deltaY *= scrollSpeed;
+    return true;
+  },
 });
 
 function raf(time: number): void {
@@ -30,6 +44,7 @@ requestAnimationFrame(raf);
 //scrolltrigger stuff
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("nameSpacing", NAME_SPACING_BEZIER);
+const revealSlowdown = CustomEase.create("revealSlowdown", REVEAL_SLOWDOWN_BEZIER);
 
 function waitForElements(selectors: string[], callback: () => void): void {
   const interval = setInterval(() => {
@@ -114,6 +129,21 @@ waitForElements([".name-overlay", ".orjust", ".overlay-name", ".navbar"], () => 
     }
   }).to(overlayName, { letterSpacing: "18.6vw", ease: "nameSpacing", duration: 0.5 }, 0.4)
     .to(overlayName2, { letterSpacing: "15vw", ease: "nameSpacing", duration: 0.6 }, 0.3)
+
+  // Same scroll range as the reveal. Speed eases down to REVEAL_SLOWEST_SPEED at the
+  // midpoint and back up to normal by the end.
+  ScrollTrigger.create({
+    trigger: ".name-overlay",
+    start: "top 60%",
+    end: "top -20%",
+    onUpdate: (self) => {
+      const p = self.progress;
+      const depth = revealSlowdown(p < 0.5 ? p * 2 : (1 - p) * 2);
+      scrollSpeed = 1 - (1 - REVEAL_SLOWEST_SPEED) * depth;
+    },
+    onLeave: () => { scrollSpeed = 1; },
+    onLeaveBack: () => { scrollSpeed = 1; },
+  });
 
   scrollTl
     .to(forShort, { opacity: 1 }, 0.6)
