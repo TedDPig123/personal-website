@@ -32,7 +32,7 @@ export default function Landing(){
                         creative
                     </div>
                         <div className="landing-photo-phone hidden w-full justify-center">
-                            <img src={comp1} alt="" className="mt-10" id="landing-photo-phone-picture"/>
+                            <img src={comp1} alt="" className="mt-10" id="landing-photo-phone-picture" width={1320} height={1080} decoding="async"/>
                         </div>
                     </div>
                 </div>

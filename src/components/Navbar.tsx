@@ -1,10 +1,10 @@
-import mainLogo from '../assets/geribydesign.png'
-import linkedInLogo from '../assets/linkedin.png'
-import instagram from '../assets/instagram.png'
-import github from '../assets/github.png'
-import question from '../assets/question.png'
-import spotify from '../assets/spotify.png'
-import youtube from '../assets/youtube.png'
+import mainLogo from '../assets/geribydesign.webp'
+import linkedInLogo from '../assets/linkedin.webp'
+import instagram from '../assets/instagram.webp'
+import github from '../assets/github.webp'
+import question from '../assets/question.webp'
+import spotify from '../assets/spotify.webp'
+import youtube from '../assets/youtube.webp'
 import resumePDF from '../assets/resume.pdf';
 
 import React, { useRef } from 'react'

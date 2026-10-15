@@ -1,10 +1,10 @@
-import timeline from '../assets/Timeline.png';
-import portfolio from '../assets/Portfolio.png';
-import carbon from '../assets/YourCarbon.png';
-import tactile from '../assets/tactile.png';
-import chord from '../assets/chord.png';
-import songbird from '../assets/songbird.png'
-import noImage from '../assets/no-image.png';
+import timeline from '../assets/Timeline.webp';
+import portfolio from '../assets/Portfolio.webp';
+import carbon from '../assets/YourCarbon.webp';
+import tactile from '../assets/tactile.webp';
+import chord from '../assets/chord.webp';
+import songbird from '../assets/songbird.webp'
+import noImage from '../assets/no-image.webp';
 
 const projectsList : {id:number, name: string, imageURL: string, description: string, stack : string[], gitlink: string, link: string, date: string}[] = [
     {

@@ -40,19 +40,21 @@ function waitForElements(selectors: string[], callback: () => void): void {
     }, 20);
 }
 
-function preloadImages(): void {
-    const images = [center, ...IMAGE_MAP];
-    const fragment = document.createDocumentFragment();
-    
-    images.forEach(src => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = src;
-        fragment.appendChild(link);
-    });
-    
-    document.head.appendChild(fragment);
+// The portraits are large, so only fetch them once the about section is getting close,
+// and never on small screens where the face tracking is disabled.
+function preloadImagesWhenNear(face: HTMLImageElement): void {
+    const observer = new IntersectionObserver((entries) => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        if (window.innerWidth < MIN_VIEWPORT_WIDTH) return;
+        observer.disconnect();
+        IMAGE_MAP.forEach(src => {
+            const img = new Image();
+            img.decoding = 'async';
+            img.src = src;
+        });
+    }, { rootMargin: '150% 0px' });
+
+    observer.observe(face);
 }
 
 function lightThrottle<T extends (...args: any[]) => void>(func: T, delay: number): T {
@@ -118,7 +120,7 @@ waitForElements([".about-portrait"], () => {
     const face = document.querySelector(".about-portrait") as HTMLImageElement;
     if (!face) return;
 
-    preloadImages();
+    preloadImagesWhenNear(face);
     updateCachedValues(face);
 
     function animate(): void {

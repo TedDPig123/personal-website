@@ -1,4 +1,4 @@
-import upArrow from "../assets/up-arrow.png"
+import upArrow from "../assets/up-arrow.webp"
 import {Link} from 'react-scroll';
 import resumePDF from '../assets/resume.pdf';
 
@@ -89,7 +89,7 @@ export default function Bottom(){
                     <div className="bottom-rights font-helveticabold text-[24px] mt-3">© Gerindra Adi, all rights reserved.</div>
                 </div>
                 <Link to='top-of-page' smooth={true} duration={500}><div className="to-the-top font-helveticabold text-[40px] leading-[25px] underline flex items-center cursor-pointer">
-                    Back to the top<span><img className="top-arrow h-auto w-[40px] ml-2" src={upArrow} alt="upArrow" /></span>
+                    Back to the top<span><img className="top-arrow h-auto w-[40px] ml-2" src={upArrow} alt="upArrow" loading="lazy" decoding="async" /></span>
                 </div></Link>
             </div>
         </div>

@@ -65,16 +65,30 @@ function waitForElements(selectors: string[], callback: () => void): void {
     }, 20);
 }
 
-function preloadImages(): void {
-    const fragment = document.createDocumentFragment();
-    IMAGES.forEach(src => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = src;
-        fragment.appendChild(link);
-    });
-    document.head.appendChild(fragment);
+function preloadImage(src: string): void {
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = src;
+}
+
+// Trail images are only used on wider screens, so fetch them there once the page has
+// finished loading and the browser is idle, instead of competing with the first paint.
+function preloadTrailImagesWhenIdle(): void {
+    if (window.innerWidth < CONFIG.minViewportWidth) return;
+
+    const start = () => {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => IMAGES.forEach(preloadImage), { timeout: 2000 });
+        } else {
+            setTimeout(() => IMAGES.forEach(preloadImage), 200);
+        }
+    };
+
+    if (document.readyState === 'complete') {
+        start();
+    } else {
+        window.addEventListener('load', start, { once: true });
+    }
 }
 
 function getPooledImage(): HTMLImageElement {
@@ -247,14 +261,18 @@ waitForElements([".track-container", ".name-overlay", ".landing-photo-phone"], (
 
     if (!container || !nameOverlay) return;
 
-    preloadImages();
+    preloadTrailImagesWhenIdle();
     updateCachedValues();
 
     if (phoneImage) {
         let currentPhoneIndex = 0;
+        if (phoneImage.offsetParent) preloadImage(IMAGES[1]);
         phoneIntervalId = setInterval(() => {
+            // The phone photo is hidden on wider screens; don't cycle (and download) it there.
+            if (!phoneImage.offsetParent) return;
             currentPhoneIndex = (currentPhoneIndex + 1) % IMAGES.length;
             phoneImage.src = IMAGES[currentPhoneIndex];
+            preloadImage(IMAGES[(currentPhoneIndex + 1) % IMAGES.length]);
         }, CONFIG.phoneChangeInterval);
     }
 

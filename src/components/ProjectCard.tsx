@@ -1,5 +1,5 @@
-import github from '../assets/github.png'
-import linkImg from '../assets/external-link.png'
+import github from '../assets/github.webp'
+import linkImg from '../assets/external-link.webp'
 
 interface ProjectCardProps {
     name: string;
@@ -16,13 +16,14 @@ export default function ProjectCard({ name, imageURL, description, stack, gitlin
         <div className="project-card flex-col w-[100%] opacity-0 hidden">
             <div className="project-name font-helveticaregular text-[24px] ml-3.5 overflow-ellipsis">{name}</div>
             <div className="relative w-full">
-                <img src={imageURL} alt="" className="w-[full] rounded-2xl object-cover aspect-3/2" />
+                <img src={imageURL} alt="" className="w-[full] rounded-2xl object-cover aspect-3/2" loading="lazy" decoding="async" />
                 
                 {gitlink.length > 0 && (
                     <a href={gitlink} target="_blank" className="absolute bottom-2 right-2 z-10">
                         <div className="absolute inset-0 bg-white rounded-full blur-lg opacity-40 scale-100"></div>
                         <img
                             src={github}
+                            loading="lazy"
                             alt="GitHub"
                             className="relative w-[35px] rounded-full hover:w-[37px] transition-all duration-300"
                             title="link to github site."
@@ -35,6 +36,7 @@ export default function ProjectCard({ name, imageURL, description, stack, gitlin
                         <div className="absolute inset-0 bg-white rounded-full blur-lg opacity-40 scale-110"></div>
                         <img
                             src={linkImg}
+                            loading="lazy"
                             alt="External Link"
                             className="relative w-[32px] hover:w-[34px] transition-all duration-300"
                             title="link to project site."

@@ -18,7 +18,7 @@ export default function About(){
 
             <div className="about-section bg-[#D9D9D9] p-[3vw] flex items-center just w-full">
                 <div className="flex justify-center w-full">
-                    <img className="about-portrait m-5 mr-0 min-w-[400px] w-[80vw]" src={headshot} alt="headshot of me" />
+                    <img className="about-portrait m-5 mr-0 min-w-[400px] w-[80vw]" src={headshot} alt="headshot of me" width={1080} height={1350} loading="lazy" decoding="async" />
                 </div>
 
                 <div className="about-text flex-col ml-15 width-full">
