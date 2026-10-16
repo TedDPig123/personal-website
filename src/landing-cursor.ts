@@ -65,10 +65,17 @@ function waitForElements(selectors: string[], callback: () => void): void {
     }, 20);
 }
 
+// Images that are downloaded *and* decoded. The Image objects are kept alive so the browser
+// keeps them decoded, which makes swapping an <img> src to one of them instant (no flash).
+const decodedImages = new Set<string>();
+const preloaded = new Map<string, HTMLImageElement>();
+
 function preloadImage(src: string): void {
+    if (preloaded.has(src)) return;
     const img = new Image();
-    img.decoding = 'async';
     img.src = src;
+    preloaded.set(src, img);
+    img.decode().then(() => decodedImages.add(src)).catch(() => {});
 }
 
 // Trail images are only used on wider screens, so fetch them there once the page has
@@ -266,14 +273,18 @@ waitForElements([".track-container", ".name-overlay", ".landing-photo-phone"], (
 
     if (phoneImage) {
         let currentPhoneIndex = 0;
-        if (phoneImage.offsetParent) preloadImage(IMAGES[1]);
         phoneIntervalId = setInterval(() => {
             // The phone photo is hidden on wider screens; don't cycle (and download) it there.
             if (!phoneImage.offsetParent) return;
-            currentPhoneIndex = (currentPhoneIndex + 1) % IMAGES.length;
+            IMAGES.forEach(preloadImage);
+
+            // Only swap once the next photo is decoded, so the change is instant.
+            const nextIndex = (currentPhoneIndex + 1) % IMAGES.length;
+            if (!decodedImages.has(IMAGES[nextIndex])) return;
+            currentPhoneIndex = nextIndex;
             phoneImage.src = IMAGES[currentPhoneIndex];
-            preloadImage(IMAGES[(currentPhoneIndex + 1) % IMAGES.length]);
         }, CONFIG.phoneChangeInterval);
+        if (phoneImage.offsetParent) IMAGES.forEach(preloadImage);
     }
 
     function setInitialMousePos(event: MouseEvent): void {
