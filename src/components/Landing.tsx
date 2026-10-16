@@ -29,7 +29,7 @@ export default function Landing(){
                         <span className="w-[100%] h-[1px] bg-black ml-4 mr-4"></span>
                         artist
                         <span className="w-[100%] h-[1px] bg-black ml-4 mr-4"></span>
-                        in nyc
+                        <div className="whitespace-nowrap shrink-0">in nyc</div>
                     </div>
                         <div className="landing-photo-phone hidden w-full justify-center">
                             <img src={comp1} alt="" className="mt-10" id="landing-photo-phone-picture" width={1320} height={1080}/>
