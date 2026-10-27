@@ -14,16 +14,32 @@ const projectsList : {id:number, name: string, imageURL: string, description: st
         name:"SnapMatePhoto",
         imageURL:snapmate,
         description:[
-            "Led the homepage redesign for SnapMatePhoto, a marketplace for booking local photographers.",
-            "Wrote the **redesign spec**, designed responsive mobile and desktop layouts (and cute animations) in **Figma** with our designers, then built and shipped it.",
-            "Swapped stock/uncredited imagery for **credited work from the platform's own photographers**.",
-            "Moved the hero, reviews and social feed into a headless **Sanity CMS** with server-side caching and fallbacks, so marketing updates ship without a deploy",
-            "Optimized Lighthouse vitals: performance **66 → 95**, accessibility **85 → 97**, SEO **92 → 100**.",
+            "Led the homepage redesign for a **two-sided marketplace** connecting clients with local photographers, from spec and Figma to production.",
+            "**Measured it with GA4**: landing-to-search conversion rose from **17.8% to 20.4%** in the first week, and seasonal demand data now drives photographer reranking.",
+            "Instead of cutting the hero slideshow, filled it with **credited work from our own photographers**, proving the network is real and giving photographers visibility.",
+            "Developed **admin dashboard tool** to **hand-pick photographers** over \"near me\" personalization until the marketplace is dense enough to return good local results.",
+            "Lighthouse performance **66 → 95** (accessibility **97**, SEO **100**) by preloading the hero, lazy-loading the rest, and serving right-sized images from a CDN.",
+            "Designed the **MySQL** data layer behind the photographer cards: batched lookups and grouped review aggregates load every card in **4 queries** instead of one per photographer.",
         ],
-        stack:["PHP", "AWS", "Sanity CMS", "JavaScript", "Nginx", "Figma"],
+        stack:["PHP", "MySQL", "JavaScript", "Sanity CMS", "GA4", "AWS", "Nginx", "Figma"],
         gitlink: "",
         link: "https://www.snapmatephoto.com/",
         date: "2026"
+    },
+    {
+        id:0,
+        name:"Timeline",
+        imageURL:timeline,
+        description:[
+            "A **full-stack life-journaling app**: a four-person class project I took over as **sole developer** and now run in production.",
+            "**REST API** on Node.js, Express and Prisma with **PostgreSQL**, using Google OAuth 2.0 and stateless JWT sessions.",
+            "**Client-side end-to-end encryption**, with media uploaded straight to **AWS S3** through presigned URLs.",
+            "Scrollable timeline UI with fluid **GSAP animations** and reusable, responsive React components, deployed on **Vercel** with Neon serverless Postgres.",
+        ],
+        stack:["TypeScript", "React.js", "Node.js", "Express", "Prisma ORM", "PostgreSQL", "Amazon S3"],
+        gitlink: "https://github.com/TedDPig123/Timeline",
+        link: "",
+        date: "2025"
     },
     {
         id:1,
@@ -38,22 +54,6 @@ const projectsList : {id:number, name: string, imageURL: string, description: st
         gitlink: "https://github.com/TedDPig123/personal-website",
         link: "https://www.geribydesign.com/",
         date: "2025",
-    },
-    {
-        id:0,
-        name:"Timeline",
-        imageURL:timeline,
-        description:[
-            "A **full-stack multimedia scrapbooking platform** built with React and TypeScript, running as a live production system.",
-            "Interactive, scrollable timeline interface with fluid **GSAP animations** and reusable, responsive components.",
-            "**REST API** built with Express and Prisma ORM, with **Google OAuth 2.0** and stateless **JWT** sessions.",
-            "Deployed on **Vercel**, with Neon serverless Postgres and **AWS S3** presigned URLs for secure media storage.",
-            "Started as a four-person coursework project; I've since taken it over as the **sole developer**, from local development to a deployed, maintained product.",
-        ],
-        stack:["TypeScript", "React.js", "Amazon S3", "Docker", "Prisma ORM", "RESTful API"],
-        gitlink: "https://github.com/TedDPig123/Timeline",
-        link: "",
-        date: "2025"
     },
     
     //     {
@@ -75,9 +75,9 @@ const projectsList : {id:number, name: string, imageURL: string, description: st
         name:"Your Carbon",
         imageURL:carbon,
         description:[
-            "A **daily carbon footprint tracker** I made for my scalable web systems class.",
+            "A **daily carbon footprint tracker** I designed in Figma and built in React for my scalable web systems class.",
             "Log activities that add to or offset your footprint, and set **daily footprint goals**.",
-            "Designed with Figma, made with React, with all data kept in **local storage**: no account needed.",
+            "All data stays in **local storage**, so there's no account needed.",
         ],
         stack:["TypeScript", "React.js", "Vite.js", "TailwindCSS", "Local Storage"],
         gitlink: "https://github.com/TedDPig123/carbon-footprint-tracker",
@@ -89,9 +89,9 @@ const projectsList : {id:number, name: string, imageURL: string, description: st
         name:"Infographic Generator (For Research)",
         imageURL:noImage,
         description:[
-            "An **Express.js** app that procedurally generates smartwatch health infographics from **real-world health tracker data**.",
-            "Uses the **GPT-4** and **Claude 4 Opus** APIs.",
-            "Built for the **HCI-VIS lab**'s investigation into deploying LLMs in digital health technology.",
+            "An **LLM pipeline** that turns **real fitness tracker data** into smartwatch health infographics, built for the HCI-VIS lab.",
+            "Generated **300+ visualizations** with the **GPT-4** and **Claude** APIs for our study on how people across generations perceive them.",
+            "Paired with a survey platform on **serverless APIs** that collected the perception data, informing how LLMs could be deployed in digital health.",
         ],
         stack:["OpenAI API", "Anthropic API", "ExpressJS", "CSV-Parser","JavaScript"],
         gitlink: "",

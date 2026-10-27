@@ -21,12 +21,11 @@ export default function ProjectCard({ name, imageURL, description, stack, gitlin
                 
                 {gitlink.length > 0 && (
                     <a href={gitlink} target="_blank" className="absolute bottom-2 right-2 z-10">
-                        <div className="absolute inset-0 bg-white rounded-full blur-lg opacity-40 scale-100"></div>
                         <img
                             src={github}
                             loading="lazy"
                             alt="GitHub"
-                            className="relative w-[35px] rounded-full hover:w-[37px] transition-all duration-300"
+                            className="relative w-[35px] rounded-full hover:w-[37px] transition-all duration-300 invert drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
                             title="link to github site."
                         />
                     </a>
@@ -34,12 +33,11 @@ export default function ProjectCard({ name, imageURL, description, stack, gitlin
                 
                 {link.length > 0 && (
                     <a href={link} target="_blank" className={`absolute bottom-2 z-10 ${gitlink.length > 0 ? "right-12" : "right-2"}`}>
-                        <div className="absolute inset-0 bg-white rounded-full blur-lg opacity-40 scale-110"></div>
                         <img
                             src={linkImg}
                             loading="lazy"
                             alt="External Link"
-                            className="relative w-[32px] hover:w-[34px] transition-all duration-300"
+                            className="relative w-[32px] hover:w-[34px] transition-all duration-300 invert drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
                             title="link to project site."
                         />
                     </a>
